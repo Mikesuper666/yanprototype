@@ -9,9 +9,16 @@ public class PlayerInputs : MonoBehaviour
 
     public GenericInput horizontalInput = new GenericInput("Horizontal", "LeftAnalogHorizontal", "Horizontal");
     public GenericInput verticallInput = new GenericInput("Vertical", "LeftAnalogVertical", "Vertical");
+    public GenericInput sprintInput = new GenericInput("LeftShift", "LeftStickClick", "LeftStickClick");
+    public GenericInput strafeInput = new GenericInput("Tab", "RightStickClick", "RightStickClick");
+    public GenericInput crouchInput = new GenericInput("C", "Y", "Y");
+    public GenericInput jumpInput = new GenericInput("Space", "X", "X");
+    public GenericInput rollInput = new GenericInput("Q", "B", "B");
 
     [HideInInspector]
     public PlayerController cc;
+    [HideInInspector]
+    public HUDController hud;
 
     #endregion
     protected virtual void Start()
@@ -21,11 +28,28 @@ public class PlayerInputs : MonoBehaviour
         if (cc != null)
             cc.Init();
 
+        if (PlayerController.instance == cc || PlayerController.instance == null)
+            StartCoroutine(CharacterInit());
+
         ShowCursor(false);
         LockCursor(false);
     }
 
+    protected virtual IEnumerator CharacterInit()
+    {
+        yield return new WaitForEndOfFrame();
+        if (hud == null && HUDController.instance != null)
+        {
+            hud = HUDController.instance;
+            hud.Init(cc);
+        }
+    }
+
     protected virtual void LateUpdate()
+    {
+    }
+
+    protected virtual void FixedUpdate()
     {
         cc.ControlLocomotion();
     }
@@ -36,6 +60,7 @@ public class PlayerInputs : MonoBehaviour
 
         InputHandle();      //update input Methods
         cc.UpdateMotor();   //call update methods
+        UpdateHUD();          //Update HUD Graphics
     }
 
     #region Basic Imputs
@@ -44,6 +69,10 @@ public class PlayerInputs : MonoBehaviour
     {
         MoveCharacter();
         SprintInput();
+        CrounchInput();
+        JumpInput();
+        StrafeInput();
+        RollInput();
     }//use this to lock the inputs
 
     protected virtual void MoveCharacter()
@@ -55,7 +84,34 @@ public class PlayerInputs : MonoBehaviour
 
     protected virtual void SprintInput()
     {
+        if (sprintInput.GetButton())
+            cc.Sprint(true);
+        else
+            cc.Sprint(false);
+    }//set shift buttom to sprint method
 
+    protected virtual void StrafeInput()
+    {
+        if (strafeInput.GetButtonDown())
+            cc.Strafe();
+    }
+
+    protected virtual void CrounchInput()
+    {
+        if (crouchInput.GetButtonDown())
+            cc.Crounch();
+    }//set c buttom to crounch method
+
+    protected virtual void JumpInput()
+    {
+        if (jumpInput.GetButtonDown())
+            cc.Jump(true);
+    }// set space button to jump method
+
+    protected virtual void RollInput()
+    {
+        if (rollInput.GetButtonDown())
+            cc.Roll();
     }
 
     #endregion
@@ -73,6 +129,18 @@ public class PlayerInputs : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         else
             Cursor.lockState = CursorLockMode.None;
+    }
+
+    #endregion
+
+    #region HUD
+
+    public virtual void UpdateHUD()
+    {
+        if (hud == null)
+            return;
+
+        hud.UpdateHUD(cc);
     }
 
     #endregion

@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PlayerTrigger
+  - Vaultable
+  - Vaultable_2m
+  - Vaultable_05m
+  - Vaultable_1m
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -13,8 +19,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - StopMove
+  - Player
   - 
   - 
   - 
