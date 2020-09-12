@@ -52,6 +52,7 @@ public class PlayerInputs : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         cc.ControlLocomotion();
+        cc.AirControl();            //update air behaviour
     }
 
     protected virtual void Update()

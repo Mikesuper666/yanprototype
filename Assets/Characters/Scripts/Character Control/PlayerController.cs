@@ -6,6 +6,11 @@ public class PlayerController : PlayerAnimator
 {
     public static PlayerController instance;
 
+    protected virtual void Awake()
+    {
+        StartCoroutine(UpdateRaycast()); // limit raycasts calls for better performance
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -62,7 +67,18 @@ public class PlayerController : PlayerAnimator
 
     public virtual void Sprint(bool value)
     {
-        isSprinting = value;
+        if (value)
+        {
+            if (currentStamina > 0 && input.sqrMagnitude > 0.1f)
+            {
+                if (isGrounded && !isCrouching)
+                    isSprinting = !isSprinting;
+            }
+        }
+        else if (currentStamina <= 0 || input.sqrMagnitude < 0.1f || isCrouching || !isGrounded || actions || isStrafing && !strafeSpeed.walkByDefault && (direction >= 0.5 || direction <= -0.5 || speed <= 0))
+        {
+            isSprinting = false;
+        }
     }
 
     public virtual void Strafe()
@@ -74,7 +90,7 @@ public class PlayerController : PlayerAnimator
     {
         if (isGrounded && !actions)
         {
-            if (isCrouching && CanExitCrounch())
+            if (isCrouching && CanExitCrouch())
                 isCrouching = false;
             else
                 isCrouching = true;
@@ -83,10 +99,36 @@ public class PlayerController : PlayerAnimator
 
     #endregion
 
+    #region Update Raycasts  
+
+    protected IEnumerator UpdateRaycast()
+    {
+        while (true)
+        {
+            yield return new WaitForEndOfFrame();
+
+            AutoCrouch();
+            //StopMove();
+        }
+    }
+
+    #endregion
 
     #region Crouch Methods
 
-    protected virtual bool CanExitCrounch()
+    protected virtual void AutoCrouch()
+    {
+        if (autoCrouch)
+            isCrouching = true;
+
+        if (autoCrouch && !inCrouchArea && CanExitCrouch())
+        {
+            autoCrouch = false;
+            isCrouching = false;
+        }
+    }
+
+    protected virtual bool CanExitCrouch()
     {
         //radius of spherecast
         float radius = _capsuleCollider.radius * .9f;

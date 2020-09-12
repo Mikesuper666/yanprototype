@@ -16,15 +16,16 @@ public class Character : MonoBehaviour, ICharacter
 
     protected virtual void Start()
     {
-        anime = GetComponent<Animator>();
-        if (anime)
-        {
-            Debug.Log("pegou o componente Animator**********************************************");
-        }
+
     }
 
     public virtual void Init()
     {
+        anime = GetComponent<Animator>();
 
+        if (anime)
+        {
+            Debug.Log("pegou o componente Animator**********************************************");
+        }
     }
 }
