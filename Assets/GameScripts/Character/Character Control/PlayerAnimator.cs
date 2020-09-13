@@ -4,14 +4,14 @@ using UnityEngine;
 
 public abstract class PlayerAnimator : PlayerMotor
 {
-    protected virtual void OnAnimatorMove()
+    public void OnAnimatorMove()
     {
         if (!this.enabled) return;
 
         UpdateAnimator();                // call ThirdPersonAnimator methods
 
-        //we implemented this funcition to override the default motion.
-        //this allows us modify the positional speed before it's applied
+        // we implement this function to override the default root motion.
+        // this allows us to modify the positional speed before it's applied.
         if (isGrounded)
         {
             if (customAction && !isRolling)
@@ -21,7 +21,9 @@ public abstract class PlayerAnimator : PlayerMotor
             if (isStrafing)
             {
                 var _speed = Mathf.Abs(strafeMagnitude);
-                if (_speed <= .5f)
+                if (_speed <= 0.5f)
+                    ControlSpeed(strafeSpeed.walkSpeed);
+                else if (_speed > 0.5f && _speed <= 1f)
                     ControlSpeed(strafeSpeed.runningSpeed);
                 else
                     ControlSpeed(strafeSpeed.sprintSpeed);
@@ -45,10 +47,11 @@ public abstract class PlayerAnimator : PlayerMotor
         }
     }
 
-    protected virtual void UpdateAnimator()
+    public virtual void UpdateAnimator()
     {
         //update main animations
         if (anime == null || !anime.enabled) return;
+
 
         LocomotionAnimation();
     }
@@ -61,6 +64,7 @@ public abstract class PlayerAnimator : PlayerMotor
        // anime.SetBool("isDead", isDead);
         anime.SetFloat("GroundDistance", groundDistance);
 
+        //if is not on ground set VerticalVelocity 
         if (!isGrounded)
             anime.SetFloat("VerticalVelocity", verticalVelocity);
 

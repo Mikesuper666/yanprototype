@@ -95,6 +95,13 @@ public class PlayerController : PlayerAnimator
             else
                 isCrouching = true;
         }
+    }// Use another transform as  reference to rotate
+
+    public virtual void RotateWithAnotherTransform(Transform referenceTransform)
+    {
+        var newRotation = new Vector3(transform.eulerAngles.x, referenceTransform.eulerAngles.y, transform.eulerAngles.z);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(newRotation), strafeSpeed.rotationSpeed * Time.deltaTime);
+        targetRotation = transform.rotation;
     }
 
     #endregion

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class PlayerMotor : Character
 {
-    #region Variables
+    #region All Variables
 
     #region Stamina
 
@@ -42,7 +42,16 @@ public abstract class PlayerMotor : Character
     [Tooltip("Turn off if you have 'in place' animations and use this values above to move the character, or use with root motion as extra speed")]
     public bool useRootMotion = false;
 
+    public enum LocomotionType
+    {
+        FreeWithStrafe,
+        OnlyStrafe,
+        OnlyFree,
+    }
+    public LocomotionType locomotionType = LocomotionType.FreeWithStrafe;
     public vMovementSpeed freeSpeed, strafeSpeed;
+    [Tooltip("Use this to rotate the character using the World axis, or false to use the camera axis - CHECK for Isometric Camera")]
+    public bool rotateByWorld = false;
 
     [Tooltip("Can control the roll direction")]
     public bool rollControl = false;
@@ -61,13 +70,22 @@ public abstract class PlayerMotor : Character
     public enum GroundCheckMethod { Low, High }
     [Tooltip("Ground check method to check ground distance an ground angle\nSimple: use just a single raycast\nNormal: Use raycast and spherecast\nComplex: use all sphereCastAll")]
     public GroundCheckMethod groundCheckMethod = GroundCheckMethod.High;
+    [Tooltip("Distance to became not grounded")]
+    [SerializeField]
+    protected float groundMinDistance = 0.25f;
+    [SerializeField]
+    protected float groundMaxDistance = 0.5f;
     [Tooltip("ADJUST IN PLAY MODE - Offset height limit for sters - GREY Raycast in front of the legs")]
     public float stepOffsetEnd = 0.45f;
     [Tooltip("ADJUST IN PLAY MODE - Offset height origin for sters, make sure to keep slight above the floor - GREY Raycast in front of the legs")]
     public float stepOffsetStart = 0f;
+    [Tooltip("Higher value will result jittering on ramps, lower values will have difficulty on steps")]
+    public float stepSmooth = 4f;
     [Tooltip("Max angle to walk")]
     [Range(30, 75)]
     public float slopeLimit = 75f;
+    [Tooltip("Apply extra gravity when the character is not grounded")]
+    public float extraGravity = -10f;
 
     protected float groundDistance;
     public RaycastHit groundHit;
@@ -131,9 +149,15 @@ public abstract class PlayerMotor : Character
     [HideInInspector]
     public Vector3 targetDirection;
     [HideInInspector]
+    public Quaternion targetRotation;
+    [HideInInspector]
     public float strafeMagnitude;
     [HideInInspector]
     public Quaternion freeRotation;
+    [HideInInspector]
+    public bool keepDirection;
+    [HideInInspector]
+    public Vector2 oldInput;
 
     #endregion
 
@@ -183,12 +207,14 @@ public abstract class PlayerMotor : Character
 
     #endregion
 
+    #region Start & Update Methods
+
     public override void Init()
     {
         base.Init();
 
         anime.updateMode = AnimatorUpdateMode.AnimatePhysics;
-        
+
         //slides the character throughs walls and edges
         frictionPhysics = new PhysicMaterial();
         frictionPhysics.name = "frictionPhysics";
@@ -243,13 +269,43 @@ public abstract class PlayerMotor : Character
         ControlJumpBehaviour();
     }
 
+    #endregion
+
     #region Locomotion
 
     public virtual void ControlLocomotion()
     {
-        //if todo lock if die or cutscenes
+        //if lock if die or cutscenes
+        if (lockMovement) return;
 
-        FreeMovement();
+        if (locomotionType.Equals(LocomotionType.FreeWithStrafe) && !isStrafing || locomotionType.Equals(LocomotionType.OnlyFree))
+            FreeMovement();
+        else if (locomotionType.Equals(LocomotionType.OnlyStrafe) || locomotionType.Equals(LocomotionType.FreeWithStrafe) && isStrafing)
+            StrafeMovement();
+    }
+
+    public virtual void StrafeMovement()
+    {
+        isStrafing = true;
+
+        if(strafeSpeed.walkByDefault)
+            StrafeLimitSpeed(0.5f);
+        else
+            StrafeLimitSpeed(1f);
+        if (stopMove) strafeMagnitude = 0f;
+        anime.SetFloat("InputMagnitude", strafeMagnitude, .2f, Time.deltaTime);
+    }
+
+    protected virtual void StrafeLimitSpeed(float value)
+    {
+        var limitInput = isSprinting ? value + .5f : value;
+        var _input = input * limitInput;
+        var _speed = Mathf.Clamp(_input.y, -limitInput, limitInput);
+        var _direction = Mathf.Clamp(_input.x, -limitInput, limitInput);
+        speed = _speed;
+        direction = _direction;
+        var newInput = new Vector2(speed, direction);
+        strafeMagnitude = Mathf.Clamp(newInput.magnitude, 0, limitInput);
     }
 
     public virtual void FreeMovement()
@@ -270,31 +326,34 @@ public abstract class PlayerMotor : Character
         anime.SetFloat("InputMagnitude", speed, .2f, Time.deltaTime); //************
 
         var conditions = (!actions || quickStop || isRolling && rollControl);
+
+        print(targetDirection.magnitude); 
         if (input != Vector2.zero && targetDirection.magnitude > .1f && conditions && !lockRotation)
         {
             Vector3 lookDirection = targetDirection.normalized;
             freeRotation = Quaternion.LookRotation(lookDirection, transform.up);
             var diferenceRotation = freeRotation.eulerAngles.y - transform.eulerAngles.y;
             var eulerY = transform.eulerAngles.y;
-            //apply free direcional rotation while not turning 180animations
-            if(isGrounded || (!isGrounded && jumpAirControl))
+            // apply free directional rotation while not turning180 animations
+            if (isGrounded || (!isGrounded && jumpAirControl))
             {
                 if (diferenceRotation < 0 || diferenceRotation > 0) eulerY = freeRotation.eulerAngles.y;
                 var euler = new Vector3(transform.eulerAngles.x, eulerY, transform.eulerAngles.z);
                 if (inTurn) return;
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(euler), freeSpeed.rotationSpeed * Time.deltaTime);
-
-
             }
+            if (!keepDirection)
+                oldInput = input;
+            if (Vector2.Distance(oldInput, input) > 0.9f && keepDirection)
+                keepDirection = false;
         }
-
     }
 
     public virtual void ControlSpeed(float velocity)
     {
         if (Time.deltaTime == 0) return;
 
-        //use RootMotion and extra speed values to move the character
+        // use RootMotion and extra speed values to move the character
         if (useRootMotion && !actions && !customAction)
         {
             this.velocity = velocity;
@@ -314,13 +373,17 @@ public abstract class PlayerMotor : Character
             if (forceRootMotion)
                 transform.rotation = anime.rootRotation;
         }
-        //use only Rigibody Force to move the character (ideal for 'inplace' animations and better behaviour in general) 
+        //use only Rigibody Force to move the character (ideal for 'inplace' animations and better behaviour in general)
         else
         {
-            if (!isStrafing)
+            if (isStrafing)
+            {
                 StrafeVelocity(velocity);
+            }
             else
+            {
                 FreeVelocity(velocity);
+            }
         }
     }
 
@@ -336,16 +399,17 @@ public abstract class PlayerMotor : Character
         var _targetVelocity = transform.forward * velocity * speed;
         _targetVelocity.y = _rigidbody.velocity.y;
         _rigidbody.velocity = _targetVelocity;
-    }//move final values forward
+        //_rigidbody.AddForce(transform.forward * ((velocity * speed) * Time.deltaTime), ForceMode.VelocityChange);
+    }
 
     protected void StopMove()
     {
         if (input.sqrMagnitude < .1f) return;
 
-        RaycastHit hitInfo;
+        RaycastHit hitinfo;
         Ray ray = new Ray(transform.position + Vector3.up * stopMoveHeight, targetDirection.normalized);
         var hitAngle = 0f;
-        if (Physics.Raycast(ray, out hitInfo, _capsuleCollider.radius + stopMoveDistance, stopMoveLayer))
+        if (Physics.Raycast(ray, out hitinfo, _capsuleCollider.radius + stopMoveDistance, stopMoveLayer))
         {
             stopMove = true;
             return;
@@ -357,27 +421,25 @@ public abstract class PlayerMotor : Character
             return;
         }
 
-        if (Physics.Linecast(transform.position + Vector3.up * (_capsuleCollider.height * 0.5f),
-            transform.position + targetDirection.normalized * (_capsuleCollider.radius + 0.2f), out hitInfo, groundLayer))
+        if (Physics.Linecast(transform.position + Vector3.up * (_capsuleCollider.height * 0.5f), transform.position + targetDirection.normalized * (_capsuleCollider.radius + 0.2f), out hitinfo, groundLayer))
         {
-            hitAngle = Vector3.Angle(Vector3.up, hitInfo.normal);
+            hitAngle = Vector3.Angle(Vector3.up, hitinfo.normal);
             Debug.DrawLine(transform.position + Vector3.up * (_capsuleCollider.height * 0.5f), transform.position + targetDirection.normalized * (_capsuleCollider.radius + 0.2f), (hitAngle > slopeLimit) ? Color.yellow : Color.blue, 0.01f);
-            var targetPoint = hitInfo.point + targetDirection.normalized * _capsuleCollider.radius;
-            if ((hitAngle > slopeLimit) && Physics.Linecast(transform.position + Vector3.up * (_capsuleCollider.height * 0.5f),
-                targetPoint, out hitInfo, groundLayer))
+            var targetPoint = hitinfo.point + targetDirection.normalized * _capsuleCollider.radius;
+            if ((hitAngle > slopeLimit) && Physics.Linecast(transform.position + Vector3.up * (_capsuleCollider.height * 0.5f), targetPoint, out hitinfo, groundLayer))
             {
-                Debug.DrawRay(hitInfo.point, hitInfo.normal);
-                hitAngle = Vector3.Angle(Vector3.up, hitInfo.normal);
+                Debug.DrawRay(hitinfo.point, hitinfo.normal);
+                hitAngle = Vector3.Angle(Vector3.up, hitinfo.normal);
 
                 if (hitAngle > slopeLimit && hitAngle < 85f)
                 {
-                    Debug.DrawLine(transform.position + Vector3.up * (_capsuleCollider.height * 0.5f), hitInfo.point, Color.red, 0.01f);
+                    Debug.DrawLine(transform.position + Vector3.up * (_capsuleCollider.height * 0.5f), hitinfo.point, Color.red, 0.01f);
                     stopMove = true;
                     return;
                 }
                 else
                 {
-                    Debug.DrawLine(transform.position + Vector3.up * (_capsuleCollider.height * 0.5f), hitInfo.point, Color.green, 0.01f);
+                    Debug.DrawLine(transform.position + Vector3.up * (_capsuleCollider.height * 0.5f), hitinfo.point, Color.green, 0.01f);
                 }
             }
         }
@@ -395,7 +457,7 @@ public abstract class PlayerMotor : Character
         if (!isJumping) return;
         //counter timer
         jumpCounter -= Time.deltaTime;
-        if(jumpCounter <= 0)
+        if (jumpCounter <= 0)
         {
             jumpCounter = 0;
             isJumping = false;
@@ -426,7 +488,7 @@ public abstract class PlayerMotor : Character
 
     protected IEnumerator ResetJumpMultiplierRoutine()
     {
-        while(timeToResetJumpMultiplier > 0 && jumpMultiplier !=1)
+        while (timeToResetJumpMultiplier > 0 && jumpMultiplier != 1)
         {
             timeToResetJumpMultiplier -= Time.deltaTime;
             yield return null;
@@ -446,9 +508,9 @@ public abstract class PlayerMotor : Character
 
         EnableGravityAndCollision(0f);
 
-        if(jumpAirControl)
+        if (jumpAirControl)
         {
-            if(isStrafing)
+            if (isStrafing)
             {
                 _rigidbody.velocity = new Vector3(velX.x, velY.y, _rigidbody.velocity.z);
                 var vel = transform.forward * (jumpForward * speed) + transform.right * (jumpForward * direction);
@@ -485,11 +547,11 @@ public abstract class PlayerMotor : Character
     {
         CheckGroundDistance();
 
-        //if (isDead || customAction)
-        //{
-        //    isGrounded = true;
-        //    return;
-        //} todo here custom action and is died method
+        if (customAction)
+        {
+            isGrounded = true;
+            return;
+        } //todo here custom action and is died method
 
         //change the physycs material to very slip when not grounded
         _capsuleCollider.material = (isGrounded && GroundAngle() <= slopeLimit + 1) ? frictionPhysics : slippyPhysics;
@@ -500,12 +562,50 @@ public abstract class PlayerMotor : Character
             _capsuleCollider.material = frictionPhysics;
         else
             _capsuleCollider.material = slippyPhysics;
+
+        //we don't stick player if one this bool is true
+        bool checkGroundConditions = !isRolling;
+
+        var magVel = (float)System.Math.Round(new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z).magnitude, 2);
+        magVel = Mathf.Clamp(magVel, 0, 1);
+
+        var groundCheckDistance = groundMinDistance;
+        if (magVel > .25f) groundCheckDistance = groundMaxDistance;
+
+        //avoid isGrounded to false if in the air
+        if (checkGroundConditions)
+        {
+            //clear the cheground to free the character to attack on air
+            var onStep = stepOffset();
+
+            if (groundDistance <= .05f)
+            {
+                isGrounded = true;
+                //Slidind(); todo here 
+            }
+            else
+            {
+                if (groundDistance >= groundCheckDistance)
+                {
+                    isGrounded = false;
+                    //check vertical velocity
+                    verticalVelocity = _rigidbody.velocity.y;
+                    //apply extra gravity when falling
+                    if (!onStep && !isJumping)
+                        _rigidbody.AddForce(transform.up * extraGravity * Time.deltaTime, ForceMode.VelocityChange);
+                }
+                else if (!onStep && !isJumping)
+                {
+                    _rigidbody.AddForce(transform.up * (extraGravity * 2 * Time.deltaTime), ForceMode.VelocityChange);
+                }
+            }
+        }
     }
 
     void CheckGroundDistance()
     {
-        //if (isDead) return; <-- todo in heath class
-        if(_capsuleCollider != null)
+        //if (isDead) return; <-- todo in heath class********************************************************
+        if (_capsuleCollider != null)
         {
             //radius of the shpereCast
             float radius = _capsuleCollider.radius * .9f;
@@ -516,11 +616,11 @@ public abstract class PlayerMotor : Character
             if (Physics.Raycast(ray2, out groundHit, colliderHeight / 2 + 2f, groundLayer))
                 dist = transform.position.y - groundHit.point.y;
             //spherecast aroud tha base of capsule to check the ground distance
-            if(groundCheckMethod == GroundCheckMethod.High)
+            if (groundCheckMethod == GroundCheckMethod.High)
             {
                 Vector3 pos = transform.position + Vector3.up * (_capsuleCollider.radius);
                 Ray ray = new Ray(pos, -Vector3.up);
-                if(Physics.SphereCast(ray, radius, out groundHit, _capsuleCollider.radius + 2f, groundLayer))
+                if (Physics.SphereCast(ray, radius, out groundHit, _capsuleCollider.radius + 2f, groundLayer))
                 {
                     //check if spherecast distance is small than ray cast distance
                     if (dist > (groundHit.distance - _capsuleCollider.radius * .1f))
@@ -535,6 +635,29 @@ public abstract class PlayerMotor : Character
     {
         var groundAngle = Vector3.Angle(groundHit.normal, Vector3.up);
         return groundAngle;
+    }// Return the ground angle
+
+    bool stepOffset()
+    {
+        if (input.sqrMagnitude < 0.1 || !isGrounded || stopMove) return false;
+
+        var _hit = new RaycastHit();
+        var _movementDirection = isStrafing && input.magnitude > 0 ? (transform.right * input.x + transform.forward * input.y).normalized : transform.forward;
+        Ray rayStep = new Ray((transform.position + new Vector3(0, stepOffsetEnd, 0) + _movementDirection * ((_capsuleCollider).radius + 0.05f)), Vector3.down);
+
+        if (Physics.Raycast(rayStep, out _hit, stepOffsetEnd - stepOffsetStart, groundLayer) && !_hit.collider.isTrigger)
+        {
+            if (_hit.point.y >= (transform.position.y) && _hit.point.y <= (transform.position.y + stepOffsetEnd))
+            {
+                var _speed = Mathf.Clamp(input.magnitude, 0, 1f);
+                var velocityDirection = (_hit.point - transform.position);
+                var vel = _rigidbody.velocity;
+                vel.y = (velocityDirection * stepSmooth * (_speed * (velocity > 1 ? velocity : 1))).y;
+                _rigidbody.velocity = vel;
+                return true;
+            }
+        }
+        return false;
     }
 
     #endregion
@@ -544,12 +667,59 @@ public abstract class PlayerMotor : Character
     public void EnableGravityAndCollision(float normalizedTime)
     {
         //enable coolider and gravity at the end of the animation
-        if(baseLayerInfo.normalizedTime >= normalizedTime)
+        if (baseLayerInfo.normalizedTime >= normalizedTime)
         {
             _capsuleCollider.isTrigger = false;
             _rigidbody.useGravity = true;
         }
     }
+
+    #endregion
+
+    #region Camera Methods
+
+    public virtual void RotateToTarget(Transform target)
+    {
+        if (target)
+        {
+            Quaternion rot = Quaternion.LookRotation(target.position - transform.position);
+            var newPos = new Vector3(transform.eulerAngles.x, rot.eulerAngles.y, transform.eulerAngles.z);
+            targetRotation = Quaternion.Euler(newPos);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(newPos), strafeSpeed.rotationSpeed * Time.deltaTime);
+        }
+    }
+
+    public virtual void RotateToDirection(Vector3 direction, bool ignoreLerp = false)
+    {
+        Quaternion rot = Quaternion.LookRotation(direction);
+        var newPos = new Vector3(transform.eulerAngles.x, rot.eulerAngles.y, transform.eulerAngles.z);
+        targetRotation = Quaternion.Euler(newPos);
+        if (ignoreLerp)
+            transform.rotation = Quaternion.Euler(newPos);
+        else transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(newPos), strafeSpeed.rotationSpeed * Time.deltaTime);
+        targetDirection = direction;
+    }
+
+    public virtual void UpdateTargetDirection(Transform referenceTransform = null)
+    {
+        if (referenceTransform && !rotateByWorld)
+        {
+            var forward = keepDirection ? referenceTransform.forward : referenceTransform.TransformDirection(Vector3.forward);
+            forward.y = 0;
+
+            forward = keepDirection ? forward : referenceTransform.TransformDirection(Vector3.forward);
+            forward.y = 0; //set to 0 because of referenceTransform rotation on the X axis
+
+            //get the right-facing direction of the referenceTransform
+            var right = keepDirection ? referenceTransform.right : referenceTransform.TransformDirection(Vector3.right);
+
+            // determine the direction the player will face based on input and the referenceTransform's right and forward directions
+            targetDirection = input.x * right + input.y * forward;
+        }
+        else
+            targetDirection = keepDirection ? targetDirection : new Vector3(input.x, 0, input.y);
+    }// Update the targetDirection variable using referenceTransform or just input.Rotate by word  the referenceDirection
+
 
     #endregion
 
