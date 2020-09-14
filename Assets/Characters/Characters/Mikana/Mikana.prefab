@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2880989500200894188}
   - component: {fileID: 2728662781493801588}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_C_Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8609579127198102786}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Little2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3387035380728545506}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_TopsUpperArmOutside_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6894327431559387230}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_C_Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6559431606663284136}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-deba64f6-559a-46f4-ac55-f5157269f1ca
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450266805983476620}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-81f2a659-c7d4-49f3-a321-b37bd3cd1fcf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3495193236428903335}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-64b1e781-1d30-4e21-84f1-042b1890e4eb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6009887156808510335}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Adj_L_FaceEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4514563914268960193}
   - component: {fileID: 5562276011916432426}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_C_Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +319,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1740549259424529231}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Thumb3_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 588261217862461066}
   - component: {fileID: 3623771899117016876}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hair001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -611,7 +611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8912881903825393690}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Ring2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -642,7 +642,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3476592640517739982}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Index3_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -672,7 +672,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3673701063609357483}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_TopsUpperLegBack_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -702,7 +702,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4122640576653628911}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_Bust2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -732,7 +732,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1614064791702892458}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Thumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -763,7 +763,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9086288561872236989}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Middle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -794,7 +794,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3381369781960221109}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_Bust2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -824,7 +824,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 208011624120256143}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Little1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -855,7 +855,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5705502615508380123}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_TopsUpperArmInside_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -885,7 +885,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4351612162479373983}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-e654fd63-7c51-4189-b672-7506f93d0509
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -916,7 +916,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 98133344823441870}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-e3d1eff1-a06f-4126-b32b-1a665ae0d475
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -947,7 +947,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2870251872199859025}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-231be7fc-e325-4433-9f45-8a9a5785f9d2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -977,7 +977,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1900217716459796834}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_SkirtSide_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1007,7 +1007,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1869299231972918086}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-5676a12d-2dff-46ef-8c84-2db692359c3e
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1038,7 +1038,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8717282247813841596}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Little3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1069,7 +1069,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7245388625178115457}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-25ba0382-1420-431a-9350-0900037258d1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1100,7 +1100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5378178823175740377}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Thumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1131,7 +1131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3147050695203426683}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Ring1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1162,7 +1162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7350037956819504284}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Little3_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1192,7 +1192,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6210916431354834276}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-6058a1b1-8220-4203-96e7-b8aef8cd6c21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1223,7 +1223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 486362120737504065}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1254,7 +1254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2399614313239802049}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Thumb3_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1284,7 +1284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6270710718563304588}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Thumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1315,7 +1315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 79208024445616198}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_SkirtBack_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1345,7 +1345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6456524273515817963}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_TopsUpperArmInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1376,7 +1376,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1663758634291684090}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Little3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1407,7 +1407,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7830543606280511973}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_TopsUpperArmInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1438,7 +1438,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1216694312580551569}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_Bust1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1469,7 +1469,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6522125805128664931}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Ring2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1500,7 +1500,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5385233776821147099}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Index3_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1531,7 +1531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7125339755139914974}
   - component: {fileID: 4880627685348193053}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1584,7 +1584,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6675441655272813247}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-1689354e-0128-4958-9c10-546136324342
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1615,7 +1615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8281108314063042314}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-67e812ed-1fbb-4af5-8956-88e0e69dd645
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1645,7 +1645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4998242828201721403}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-c093aa81-89fe-4e36-a68f-c267b27446e0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1676,7 +1676,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5674314536724531921}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_TopsUpperLegBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1707,7 +1707,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 270390900906463504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_ToeBase_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1738,7 +1738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7262990393001215901}
   - component: {fileID: 447291393817581934}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_UpperLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1795,7 +1795,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4179416673484317990}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-278cfba6-fb7a-4904-96d3-d3aa6b3df2ce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1825,7 +1825,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4177920912737663932}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Adj_R_FaceEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1856,7 +1856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6201177651789128248}
   - component: {fileID: 1528053304095165810}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1907,7 +1907,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6355538916488289191}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-6c80eca0-b18e-410f-a097-b21fae5456b5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1938,7 +1938,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 896818568959189145}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Index1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1969,7 +1969,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6499388689120509046}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-26755539-5550-4725-9057-fbbce0dae7b6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1999,7 +1999,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2389930317397419601}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Index2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2030,7 +2030,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2737589886688243683}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2061,7 +2061,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5940650793134549106}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_ToeBase_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2091,7 +2091,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2702929882008204640}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_SkirtSide_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2121,7 +2121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7088518145417662365}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_SkirtBack_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2151,7 +2151,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3457057960821380090}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-3973eb50-520b-4611-b646-044354671cff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2182,7 +2182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1747054328997075975}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-ae0586a8-fa36-4fd8-9b56-ed9d3e6bbd2f
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2212,7 +2212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7734426048346793513}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-a3737441-fcc7-428b-9d78-2beeed476d88
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2243,7 +2243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1224705625211404646}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_ToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2274,7 +2274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5182352729003575671}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Ring3_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2304,7 +2304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8653092614315072711}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Middle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2335,7 +2335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1771397885054392438}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_TopsUpperLegFront_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2365,7 +2365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5754189919716747624}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-f6fadc77-3cfb-4727-86aa-ba95bf45fc89
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2396,7 +2396,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3197912721440442093}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-57cff585-8ca4-4486-9901-93070605670c
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2427,7 +2427,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5923443366297382935}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Thumb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2458,7 +2458,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4148394797957059788}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_SkirtSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2489,7 +2489,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2181711818493355338}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_ToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2520,7 +2520,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4629339876664198433}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Index2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2551,7 +2551,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 737733944929192207}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_LowerLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2582,7 +2582,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5147064834222590539}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-f099162d-4d48-4f82-9fa2-3e350ea150fc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2612,7 +2612,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1720235846710880768}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-ba5d9eb5-f68e-4f11-935b-e86ac7887e4c
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2642,7 +2642,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6309171987515557498}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Shoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2673,7 +2673,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4437700224094433968}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_TopsUpperArmOutside_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2703,7 +2703,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1626803410334021456}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-45e5cb04-164d-4bc9-949d-7dc2521b4cc6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2734,7 +2734,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2909751643430129524}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_SkirtSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2765,7 +2765,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1780379174722532040}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-f2ff80d4-e956-4b30-9875-823dfac33b9b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2796,7 +2796,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1932454858767195356}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_C_Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2829,7 +2829,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8037281689082194739}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Ring3_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2859,7 +2859,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2774144149802404260}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Middle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2890,7 +2890,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1195262355773461052}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-764f9a4e-f39d-4f33-9beb-f17e838e41c8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2920,7 +2920,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 342134720222837977}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-8ff86eee-ea86-4714-93a3-ca42930a4d61
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2952,7 +2952,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8585590197933617033}
   - component: {fileID: 1246801744849157352}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_C_Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3019,9 +3019,17 @@ GameObject:
   - component: {fileID: 1429915463017761173}
   - component: {fileID: 53012682354805281}
   - component: {fileID: 2879617103227362997}
-  m_Layer: 0
+  - component: {fileID: 648443314}
+  - component: {fileID: 648443313}
+  - component: {fileID: 648443303}
+  - component: {fileID: 648443311}
+  - component: {fileID: 648443312}
+  - component: {fileID: 648443315}
+  - component: {fileID: 648443316}
+  - component: {fileID: 648443317}
+  m_Layer: 9
   m_Name: Mikana
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3069,7 +3077,7 @@ Animator:
   m_GameObject: {fileID: 5184904144818289301}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f2837bc0d1127194cbcc94be1e1137db, type: 2}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 063544d9180ba394b9e7c497c8372a7d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3125,9 +3133,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawGizmo: 1
-  UpdateType: 1
+  UpdateType: 2
   Target: {fileID: 0}
-  Head: {fileID: 0}
+  Head: {fileID: 8585590197933617033}
   m_yaw: 0
   m_pitch: 0
 --- !u!114 &2879617103227362997
@@ -3142,7 +3150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b72334adf6f7948bd98b4f0a873949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawGizmo: 0
+  DrawGizmo: 1
   LeftEye:
     Transform: {fileID: 6009887156808510335}
     OffsetRotation:
@@ -3289,6 +3297,487 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurveXRangeDegree: 90
     CurveYRangeDegree: 10
+--- !u!54 &648443314
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5184904144818289301}
+  serializedVersion: 2
+  m_Mass: 50
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
+--- !u!136 &648443313
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5184904144818289301}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 1.6
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!114 &648443303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5184904144818289301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ea1f88e8d74e04e9341465573a4ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlendShapes: {fileID: 9114120720253371755}
+  m_interVal: 3
+  m_closingTime: 0.06
+  m_openingSeconds: 0.03
+  m_closeSeconds: 0.1
+--- !u!114 &648443311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5184904144818289301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17862eaf950339345acadee306c88a9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockInput: 0
+  unlockCursorOnStart: 0
+  showCursorOnStart: 0
+  horizontalInput:
+    useInput: 1
+    isAxisInUse: 0
+    keyboard: Horizontal
+    keyboardAxis: 0
+    joystick: LeftAnalogHorizontal
+    joystickAxis: 0
+    mobile: Horizontal
+    mobileAxis: 0
+    joystickAxisInvert: 0
+    keyboardAxisInvert: 0
+    mobileAxisInvert: 0
+  verticallInput:
+    useInput: 1
+    isAxisInUse: 0
+    keyboard: Vertical
+    keyboardAxis: 0
+    joystick: LeftAnalogVertical
+    joystickAxis: 0
+    mobile: Vertical
+    mobileAxis: 0
+    joystickAxisInvert: 0
+    keyboardAxisInvert: 0
+    mobileAxisInvert: 0
+  sprintInput:
+    useInput: 1
+    isAxisInUse: 0
+    keyboard: LeftShift
+    keyboardAxis: 0
+    joystick: LeftStickClick
+    joystickAxis: 0
+    mobile: LeftStickClick
+    mobileAxis: 0
+    joystickAxisInvert: 0
+    keyboardAxisInvert: 0
+    mobileAxisInvert: 0
+  strafeInput:
+    useInput: 1
+    isAxisInUse: 0
+    keyboard: Tab
+    keyboardAxis: 0
+    joystick: RightStickClick
+    joystickAxis: 0
+    mobile: RightStickClick
+    mobileAxis: 0
+    joystickAxisInvert: 0
+    keyboardAxisInvert: 0
+    mobileAxisInvert: 0
+  crouchInput:
+    useInput: 1
+    isAxisInUse: 0
+    keyboard: C
+    keyboardAxis: 0
+    joystick: Y
+    joystickAxis: 0
+    mobile: Y
+    mobileAxis: 0
+    joystickAxisInvert: 0
+    keyboardAxisInvert: 0
+    mobileAxisInvert: 0
+  jumpInput:
+    useInput: 1
+    isAxisInUse: 0
+    keyboard: Space
+    keyboardAxis: 0
+    joystick: X
+    joystickAxis: 0
+    mobile: X
+    mobileAxis: 0
+    joystickAxisInvert: 0
+    keyboardAxisInvert: 0
+    mobileAxisInvert: 0
+  rollInput:
+    useInput: 1
+    isAxisInUse: 0
+    keyboard: Q
+    keyboardAxis: 0
+    joystick: B
+    joystickAxis: 0
+    mobile: B
+    mobileAxis: 0
+    joystickAxisInvert: 0
+    keyboardAxisInvert: 0
+    mobileAxisInvert: 0
+  lockCameraInput: 0
+  ignoreCameraRotation: 0
+  rotateToCameraWhileStrafe: 1
+  rotateCameraXInput:
+    useInput: 1
+    isAxisInUse: 0
+    keyboard: Mouse X
+    keyboardAxis: 0
+    joystick: RightAnalogHorizontal
+    joystickAxis: 0
+    mobile: Mouse X
+    mobileAxis: 0
+    joystickAxisInvert: 0
+    keyboardAxisInvert: 0
+    mobileAxisInvert: 0
+  rotateCameraYInput:
+    useInput: 1
+    isAxisInUse: 0
+    keyboard: Mouse Y
+    keyboardAxis: 0
+    joystick: RightAnalogVertical
+    joystickAxis: 0
+    mobile: Mouse Y
+    mobileAxis: 0
+    joystickAxisInvert: 0
+    keyboardAxisInvert: 0
+    mobileAxisInvert: 0
+  cameraZoomInput:
+    useInput: 1
+    isAxisInUse: 0
+    keyboard: Mouse ScrollWheel
+    keyboardAxis: 0
+    joystick: 
+    joystickAxis: 0
+    mobile: 
+    mobileAxis: 0
+    joystickAxisInvert: 0
+    keyboardAxisInvert: 0
+    mobileAxisInvert: 0
+  mouseRight:
+    useInput: 1
+    isAxisInUse: 0
+    keyboard: Mouse Button 1
+    keyboardAxis: 0
+    joystick: 
+    joystickAxis: 0
+    mobile: 
+    mobileAxis: 0
+    joystickAxisInvert: 0
+    keyboardAxisInvert: 0
+    mobileAxisInvert: 0
+  tpCamera: {fileID: 0}
+  customCameraState: 
+  customlookAtPoint: 
+  changeCameraState: 0
+  smoothCameraState: 0
+  keepDirection: 0
+  OnLateUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  cc: {fileID: 0}
+  hud: {fileID: 0}
+--- !u!114 &648443312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5184904144818289301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c21f97fa651963a46b1d8a7c3ee17a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugWindow: 1
+  maxStamina: 200
+  currentStamina: 0
+  rollStamina: 25
+  jumpStamina: 30
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  autoCrouchLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  headDetect: 0.95
+  stopMoveLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  stopMoveHeight: 0.65
+  stopMoveDistance: 0.5
+  useRootMotion: 0
+  locomotionType: 1
+  freeSpeed:
+    rotationSpeed: 10
+    walkByDefault: 0
+    walkSpeed: 2
+    runningSpeed: 3
+    sprintSpeed: 4
+    crouchSpeed: 2
+  strafeSpeed:
+    rotationSpeed: 10
+    walkByDefault: 1
+    walkSpeed: 2
+    runningSpeed: 3
+    sprintSpeed: 4
+    crouchSpeed: 2
+  talkCamera:
+    rotationSpeed: 10
+    walkByDefault: 0
+    walkSpeed: 2
+    runningSpeed: 3
+    sprintSpeed: 4
+    crouchSpeed: 2
+  rotateByWorld: 0
+  rollControl: 0
+  jumpAirControl: 1
+  jumpTimer: 0.3
+  jumpCounter: 0
+  jumpForward: 3
+  jumpHeight: 2.8
+  groundCheckMethod: 1
+  groundMinDistance: 0.25
+  groundMaxDistance: 0.5
+  stepOffsetEnd: 0.45
+  stepOffsetStart: 0.05
+  stepSmooth: 4
+  slopeLimit: 75
+  extraGravity: -5
+  isGrounded: 0
+  isCrouching: 0
+  inCrouchArea: 0
+  isSprinting: 0
+  isSliding: 0
+  stopMove: 0
+  autoCrouch: 0
+  isRolling: 0
+  isJumping: 0
+  isGettingUp: 0
+  inTurn: 0
+  quickStop: 0
+  landHigh: 0
+  isTalking: 0
+  customAction: 0
+  targetDirection: {x: 0, y: 0, z: 0}
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
+  strafeMagnitude: 0
+  freeRotation: {x: 0, y: 0, z: 0, w: 0}
+  keepDirection: 0
+  oldInput: {x: 0, y: 0}
+  frictionPhysics: {fileID: 0}
+  maxFrictionPhysics: {fileID: 0}
+  slippyPhysics: {fileID: 0}
+  _capsuleCollider: {fileID: 0}
+  lockMovement: 0
+  lockInStrafe: 0
+  lockSpeed: 0
+  lockRotation: 0
+  forceRootMotion: 0
+  colliderRadius: 0
+  colliderHeight: 0
+  colliderCenter: {x: 0, y: 0, z: 0}
+  speed: 0
+  direction: 0
+  verticalVelocity: 0
+  input: {x: 0, y: 0}
+  velocity: 0
+  jumpMultiplier: 1
+--- !u!114 &648443315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5184904144818289301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 666b95da452215f48ad26cfc69743331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlendShapes: {fileID: 0}
+  interlavo: 50
+  closingTime: 0.06
+  m_openingSeconds: 0.03
+  m_closeSeconds: 0.1
+--- !u!114 &648443316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5184904144818289301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 624654ff0a68ee844994f728ddf3d991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectAt: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  distanceFrom: 0
+  maxSelectionDistance: 4
+  runRaycasts: 1
+  raycastAll: 0
+  useDefaultGUI: 1
+  guiSkin: {fileID: 11400000, guid: 5e7e41edee2a2f24ea4e062852364e54, type: 2}
+  guiStyleName: label
+  alignment: 1
+  textStyle: 2
+  textStyleColor: {r: 0, g: 0, b: 0, a: 1}
+  inRangeColor: {r: 1, g: 0.93288153, b: 0.015686274, a: 1}
+  outOfRangeColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.8}
+  reticle:
+    inRange: {fileID: 2800000, guid: 522f0b9508ec7c54aaf42647ef91b918, type: 3}
+    outOfRange: {fileID: 0}
+    width: 64
+    height: 64
+  useKey: 101
+  useButton: E
+  defaultUseMessage: (Press "E" to talk)
+  broadcastToChildren: 1
+  actorTransform: {fileID: 0}
+  tooFarMessage: 
+  onSelectedUsable:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeselectedUsable:
+    m_PersistentCalls:
+      m_Calls: []
+  tooFarEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  debug: 0
+--- !u!114 &648443317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5184904144818289301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5473918a168c44fa0294bd4d1399f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conversationEvents:
+    onConversationStart:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 648443316}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onConversationEnd:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 648443316}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+    onConversationCancelled:
+      m_PersistentCalls:
+        m_Calls: []
+    onConversationLine:
+      m_PersistentCalls:
+        m_Calls: []
+    onConversationLineEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    onConversationLineCancelled:
+      m_PersistentCalls:
+        m_Calls: []
+    onConversationResponseMenu:
+      m_PersistentCalls:
+        m_Calls: []
+    onConversationResponseMenuTimeout:
+      m_PersistentCalls:
+        m_Calls: []
+    onLinkedConversationStart:
+      m_PersistentCalls:
+        m_Calls: []
+  barkEvents:
+    onBarkStart:
+      m_PersistentCalls:
+        m_Calls: []
+    onBarkEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    onBarkLine:
+      m_PersistentCalls:
+        m_Calls: []
+  sequenceEvents:
+    onSequenceStart:
+      m_PersistentCalls:
+        m_Calls: []
+    onSequenceEnd:
+      m_PersistentCalls:
+        m_Calls: []
+  questEvents:
+    onQuestStateChange:
+      m_PersistentCalls:
+        m_Calls: []
+    onQuestTrackingEnabled:
+      m_PersistentCalls:
+        m_Calls: []
+    onQuestTrackingDisabled:
+      m_PersistentCalls:
+        m_Calls: []
+    onUpdateQuestTracker:
+      m_PersistentCalls:
+        m_Calls: []
+  pauseEvents:
+    onDialogueSystemPause:
+      m_PersistentCalls:
+        m_Calls: []
+    onDialogueSystemUnpause:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &5229110049026073005
 GameObject:
   m_ObjectHideFlags: 0
@@ -3298,7 +3787,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5307812212983142512}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_SkirtFront_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3328,7 +3817,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6571341491827429868}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_TopsUpperLegBack_end 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3358,7 +3847,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8560360713270065265}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Little3_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3388,7 +3877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3374155529045336425}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-59017ed6-767f-47a7-a795-d4987e26c1e3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3419,7 +3908,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7372856092222277913}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_TopsUpperLegSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3450,7 +3939,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2364058496998692814}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Thumb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3481,7 +3970,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 288142132813506637}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-aa2cfed0-383c-4ce8-829a-ffdfd420fa9a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3512,7 +4001,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6657044011146328999}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-55a6f06d-c84e-4d0c-b4bc-2afb9b98358d
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3543,7 +4032,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6402637632307092726}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Index3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3574,7 +4063,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 80647447371746890}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-c1e26fa6-f45f-4466-a07b-40696cb9f28a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3605,7 +4094,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3971377144927184630}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-ec63f9e1-0755-452e-a27f-e61249d780a0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3636,7 +4125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2288679931943917902}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Middle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3668,7 +4157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2752130047197254424}
   - component: {fileID: 4765001927179844118}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3721,7 +4210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8893947304347191524}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-ddf5fba8-d340-4a3e-8c23-dbc09fee8f61
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3752,7 +4241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2198521261079386646}
   - component: {fileID: 5370142496991833375}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_C_UpperChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3807,7 +4296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5905141659071777721}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3838,7 +4327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8799967043364844284}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Ring1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3869,7 +4358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5458525627409206022}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_TopsUpperLegFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3900,7 +4389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6456743237305802355}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-e24ef475-47df-4d09-8f8e-84fa9da02420
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3931,7 +4420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7588604236708679787}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-4e79ed33-dc86-4bfb-80a7-1486a600c45d
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3962,7 +4451,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6017717645390904474}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_SkirtFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3993,7 +4482,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7122668861108373149}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_TopsUpperLegSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4024,7 +4513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8893644705463070615}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-d61b7dd5-8c52-415d-9fd6-05ec36b6d156
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4054,7 +4543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7623035119151338401}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Thumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4086,7 +4575,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6596629069125909184}
   - component: {fileID: 1175616115754369399}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_UpperLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4143,7 +4632,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2287604988199825628}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_SkirtFront_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4173,7 +4662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2248846359882502094}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Little2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4204,7 +4693,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7801524933349947911}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_TopsUpperLegSide_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4234,7 +4723,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3407289668815856921}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Little1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4265,7 +4754,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8758889200955949117}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_TopsUpperArmOutside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4297,7 +4786,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8497106875398283729}
   - component: {fileID: 4198056753678060314}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_LowerArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4350,7 +4839,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8359852094236971794}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_TopsUpperLegFront_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4380,7 +4869,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1660901832423420470}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-e6e0626a-e0a8-44f1-b1be-cfa7aea42d4f
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4411,7 +4900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5154983153454984940}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_SkirtBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4442,7 +4931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6915253294291775151}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_TopsUpperArmOutside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4473,7 +4962,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8669500498644327548}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_TopsUpperLegSide_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4503,7 +4992,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5845020509593361650}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4535,7 +5024,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9153582846419912858}
   - component: {fileID: 6968143109065011323}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4766,7 +5255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 632795041807793582}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_LowerLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4797,7 +5286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4736068166373001455}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Index3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4828,7 +5317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6865213711714382900}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Middle3_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4858,7 +5347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8747005431053575546}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_TopsUpperLegBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4889,7 +5378,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3587354603859652925}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_SkirtBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4921,7 +5410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6440703133848319154}
   - component: {fileID: 4723442435391914856}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4972,7 +5461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4997163618073178803}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Middle3_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5002,7 +5491,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8546510662700580549}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Ring3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5033,7 +5522,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 651839758250214723}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_TopsUpperArmInside_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5063,7 +5552,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 418342675524128585}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_Bust1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5094,7 +5583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5138172085124407357}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-cd26887e-9321-4425-9c7f-376efbf21e02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5124,7 +5613,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 180620444949832617}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Index1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5155,7 +5644,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4818070124909902106}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Middle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5186,7 +5675,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3334236754467828940}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-a97a6074-9cb5-466e-a696-c329ddae2287
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5217,7 +5706,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8811319656815215796}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_R_SkirtFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5249,7 +5738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6313560237177146853}
   - component: {fileID: 8623754952418600548}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5483,7 +5972,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2956091728719541841}
   - component: {fileID: 4624503205515084906}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_LowerArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5536,7 +6025,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 927967053117944439}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HairJoint-31345734-d653-45f6-a3d0-3623d2974ff6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5583,7 +6072,7 @@ GameObject:
   - component: {fileID: 8097737390307687838}
   - component: {fileID: 712821756942329277}
   - component: {fileID: 948765672514396588}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: secondary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6186,7 +6675,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3009584837483935466}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_L_Middle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6217,7 +6706,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6207735901229013503}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Ring3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6248,7 +6737,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5085682554599708349}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Bip_R_Shoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6279,7 +6768,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5313137870570227566}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: J_Sec_L_TopsUpperLegFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}

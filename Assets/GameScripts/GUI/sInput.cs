@@ -22,12 +22,20 @@ public class sInput : MonoBehaviour
                 _instance = GameObject.FindObjectOfType<sInput>();
                 if (_instance == null)
                 {
-                    new GameObject("sInputType", typeof(sInput));
+                    new GameObject("InputType", typeof(sInput));
                     return sInput.instance;
                 }
             }
             return _instance;
         }
+    }
+
+    public HUDController hud;
+
+    void Start()
+    {
+        if (hud == null) hud = HUDController.instance;
+
     }
 
     private InputDevice _inputType = InputDevice.MouseKeyboard;
@@ -42,18 +50,116 @@ public class sInput : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// GAMEPAD VIBRATION - call this method to use vibration on the gamepad
+    /// </summary>
+    /// <param name="vibTime">duration of the vibration</param>
+    /// <returns></returns>
+
+    public void GamepadVibration(float vibTime)
+    {
+        if (inputDevice == InputDevice.Joystick)
+        {
+            StartCoroutine(GamepadVibrationRotine(vibTime));
+        }
+    }
+
+    private IEnumerator GamepadVibrationRotine(float vibTime)
+    {
+        if (inputDevice == InputDevice.Joystick)
+        {
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
+
+            XInputDotNetPure.GamePad.SetVibration(0, 1, 1);
+            yield return new WaitForSeconds(vibTime);
+            XInputDotNetPure.GamePad.SetVibration(0, 0, 0);
+
+#else
+	            yield return new WaitForSeconds(0f);
+#endif
+        }
+    }
+
+    void OnGUI()
+    {
+        switch (inputDevice)
+        {
+            case InputDevice.MouseKeyboard:
+                if (isJoystickInput())
+                {
+                    inputDevice = InputDevice.Joystick;
+
+                    if (hud != null)
+                    {
+                        hud.controllerInput = true;
+                        hud.ShowText("Control scheme changed to Controller", 2f, 0.5f);
+                    }
+                }
+                else if (isMobileInput())
+                {
+                    inputDevice = InputDevice.Mobile;
+                    if (hud != null)
+                    {
+                        hud.controllerInput = true;
+                        hud.ShowText("Control scheme changed to Mobile", 2f, 0.5f);
+                    }
+                }
+                break;
+            case InputDevice.Joystick:
+                if (isMouseKeyboard())
+                {
+                    inputDevice = InputDevice.MouseKeyboard;
+                    if (hud != null)
+                    {
+                        hud.controllerInput = false;
+                        hud.ShowText("Control scheme changed to Keyboard/Mouse", 2f, 0.5f);
+                    }
+                }
+                else if (isMobileInput())
+                {
+                    inputDevice = InputDevice.Mobile;
+                    if (hud != null)
+                    {
+                        hud.controllerInput = true;
+                        hud.ShowText("Control scheme changed to Mobile", 2f, 0.5f);
+                    }
+                }
+                break;
+            case InputDevice.Mobile:
+                if (isMouseKeyboard())
+                {
+                    inputDevice = InputDevice.MouseKeyboard;
+                    if (hud != null)
+                    {
+                        hud.controllerInput = false;
+                        hud.ShowText("Control scheme changed to Keyboard/Mouse", 2f, 0.5f);
+                    }
+                }
+                else if (isJoystickInput())
+                {
+                    inputDevice = InputDevice.Joystick;
+                    if (hud != null)
+                    {
+                        hud.controllerInput = true;
+                        hud.ShowText("Control scheme changed to Controller", 2f, 0.5f);
+                    }
+                }
+                break;
+        }
+    }
+
     private bool isMobileInput()
     {
-        #if UNITY_EDITOR && UNITY_MOBILE
-                    if (EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonDown(0))
-                    {
-                        return true;
-                    }
+#if UNITY_EDITOR && UNITY_MOBILE
+            if (EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonDown(0))
+            {
+                return true;
+            }
 		
-        #elif MOBILE_INPUT
-                    if (EventSystem.current.IsPointerOverGameObject() || (Input.touches.Length > 0))
-                        return true;
-        #endif
+#elif MOBILE_INPUT
+            if (EventSystem.current.IsPointerOverGameObject() || (Input.touches.Length > 0))
+                return true;
+#endif
         return false;
     }
 
@@ -624,5 +730,7 @@ public class GenericInput
             return false;
         }
     }
+
+
 }
 

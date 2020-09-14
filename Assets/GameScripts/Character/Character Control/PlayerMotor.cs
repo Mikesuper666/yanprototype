@@ -44,14 +44,19 @@ public abstract class PlayerMotor : Character
 
     public enum LocomotionType
     {
+        TalkCamera,
         FreeWithStrafe,
         OnlyStrafe,
         OnlyFree,
     }
     public LocomotionType locomotionType = LocomotionType.FreeWithStrafe;
-    public vMovementSpeed freeSpeed, strafeSpeed;
+    public vMovementSpeed freeSpeed, strafeSpeed, talkCamera;
     [Tooltip("Use this to rotate the character using the World axis, or false to use the camera axis - CHECK for Isometric Camera")]
     public bool rotateByWorld = false;
+    [Tooltip("Check this to use the TurnOnSpot animations")]
+    public bool turnOnSpotAnim = false;
+    [Tooltip("Put your Random Idle animations at the AnimatorController and select a value to randomize, 0 is disable.")]
+    public float randomIdleTime = 0f;
 
     [Tooltip("Can control the roll direction")]
     public bool rollControl = false;
@@ -121,6 +126,7 @@ public abstract class PlayerMotor : Character
     // action bools
     [HideInInspector]
     public bool
+            isTalking,
             isRolling,
             isJumping,
             isGettingUp,
@@ -197,7 +203,7 @@ public abstract class PlayerMotor : Character
     public float velocity;                              //velocity to apply to rigidbody
     //Get layers from the Animator controller
     [HideInInspector]
-    public AnimatorStateInfo baseLayerInfo;
+    public AnimatorStateInfo baseLayerInfo, underBodyInfo, rightArmInfo, leftArmInfo, fullBodyInfo, upperBodyInfo;
     [HideInInspector]
     public float jumpMultiplier = 1;
     private bool _isStrafing;
@@ -275,6 +281,7 @@ public abstract class PlayerMotor : Character
 
     public virtual void ControlLocomotion()
     {
+
         //if lock if die or cutscenes
         if (lockMovement) return;
 
@@ -284,11 +291,23 @@ public abstract class PlayerMotor : Character
             StrafeMovement();
     }
 
+    public virtual void TalkCamera(bool _isTalking)
+    {
+        lockMovement = _isTalking;      //lock player movement
+        input = Vector2.zero;                //if oldinput has value set to 0;
+        isStrafing = false;
+        anime.SetFloat("InputMagnitude", 0, 0, 0); //************
+
+        isTalking = _isTalking;         //set isTalking state true in Playerinputs state
+        
+        print("talking");
+    }
+
     public virtual void StrafeMovement()
     {
         isStrafing = true;
 
-        if(strafeSpeed.walkByDefault)
+        if (strafeSpeed.walkByDefault)
             StrafeLimitSpeed(0.5f);
         else
             StrafeLimitSpeed(1f);
@@ -327,7 +346,6 @@ public abstract class PlayerMotor : Character
 
         var conditions = (!actions || quickStop || isRolling && rollControl);
 
-        print(targetDirection.magnitude); 
         if (input != Vector2.zero && targetDirection.magnitude > .1f && conditions && !lockRotation)
         {
             Vector3 lookDirection = targetDirection.normalized;

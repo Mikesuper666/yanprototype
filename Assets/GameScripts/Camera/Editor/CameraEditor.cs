@@ -282,6 +282,9 @@ public class CameraEditor : Editor
         camState.right = EditorGUILayout.Slider("Right", camState.right, -3f, 3f);
         camState.fixedAngle.x = EditorGUILayout.Slider("Angle X", camState.fixedAngle.x, -360, 360);
         camState.fixedAngle.y = EditorGUILayout.Slider("Angle Y", camState.fixedAngle.y, -360, 360);
+        //if (camState.cameraMode.Equals(TPCameraMode.FixedAngle))
+        //    tpCamera.RotateCamera(camState.fixedAngle.x, camState.fixedAngle.y);
+        Debug.Log("Debugar aqui depois");
     }
 
     void FixedPointMode(CameraState camState)

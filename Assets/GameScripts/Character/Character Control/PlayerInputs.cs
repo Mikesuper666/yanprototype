@@ -6,7 +6,7 @@ public class PlayerInputs : MonoBehaviour
 {
     #region Variables
     [Header("Default Input")]
-    public bool lockInput;
+    public bool lockInput;                            //use to block all character inputs
     [Header("Uncheck if you need to use the cursor")]
     public bool unlockCursorOnStart = false;
     public bool showCursorOnStart = false;
@@ -20,15 +20,16 @@ public class PlayerInputs : MonoBehaviour
 
     [Header("Camera Settings")]
     public bool lockCameraInput;
-    public bool ignoreCameraRotation;
+    public bool ignoreCameraRotation;                   //rotate player with the camera if walking/running etc
     public bool rotateToCameraWhileStrafe = true;
 
     [Header("Camera Input")]
     public GenericInput rotateCameraXInput = new GenericInput("Mouse X", "RightAnalogHorizontal", "Mouse X");
     public GenericInput rotateCameraYInput = new GenericInput("Mouse Y", "RightAnalogVertical", "Mouse Y");
     public GenericInput cameraZoomInput = new GenericInput("Mouse ScrollWheel", "", "");
+    public GenericInput mouseRight = new GenericInput("Fire2", "", "");
     [HideInInspector]
-    public MainCamera tpCamera;              // acess camera info
+    public MainCamera tpCamera;                         // acess camera info
     [HideInInspector]
     public string customCameraState;                    // generic string to change the CameraState        
     [HideInInspector]
@@ -89,7 +90,6 @@ public class PlayerInputs : MonoBehaviour
     {
         if (cc == null || Time.timeScale == 0) return;
         //if ((!updateIK && anime.updateMode == AnimatorUpdateMode.AnimatePhysics)) return;
-
         CameraInput();                      // update camera input
         UpdateCameraStates();               // update camera states
         OnLateUpdate.Invoke();
@@ -266,7 +266,8 @@ public class PlayerInputs : MonoBehaviour
         var X = lockCameraInput ? 0f : rotateCameraXInput.GetAxis();
         var zoom = cameraZoomInput.GetAxis();
 
-        tpCamera.RotateCamera(X, Y);
+        if (Input.GetMouseButton(1))
+            tpCamera.RotateCamera(X, Y);//block to use mouse *****************
         tpCamera.Zoom(zoom);
 
         if (keepDirection && Vector2.Distance(cc.input, oldInput) > .2f) keepDirection = false;
@@ -311,6 +312,8 @@ public class PlayerInputs : MonoBehaviour
             tpCamera.ChangeState("Crouch", true);
         else if (cc.isStrafing)
             tpCamera.ChangeState("Strafing", true);
+        else if (cc.isTalking)
+            tpCamera.ChangeState("TalkCamera", true);
         else
             tpCamera.ChangeState("Default", true);
     }//change here the angle camera by camera states

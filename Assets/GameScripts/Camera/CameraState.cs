@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraState 
 {
     public string Name;
-    public float forward;
+    public float forward;               //"Configure the main position of camera -1 Behind the player 0 Inside the player 1 Ahead the player"
     public float right;
     public float defaultDistance;
     public float maxDistance;

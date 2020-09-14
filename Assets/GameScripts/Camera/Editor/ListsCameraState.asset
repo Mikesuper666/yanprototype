@@ -19,13 +19,13 @@ MonoBehaviour:
     right: 0
     defaultDistance: 3
     maxDistance: 3
-    minDistance: 0.7
-    height: 1.6
+    minDistance: 0.9
+    height: 1.4
     smoothFollow: 10
     xMouseSensitivity: 3
-    yMouseSensitivity: 3
-    yMinLimit: -75
-    yMaxLimit: 75
+    yMouseSensitivity: 2.5
+    yMinLimit: -180
+    yMaxLimit: 180
     xMinLimit: -360
     xMaxLimit: 360
     rotationOffSet: {x: 8, y: 0, z: 0}
@@ -33,9 +33,9 @@ MonoBehaviour:
     cullingMinDist: 0.01
     fov: 60
     useZoom: 1
-    fixedAngle: {x: 360, y: 78}
+    fixedAngle: {x: 0, y: 0}
     lookPoints:
-    - pointName: point_01
+    - pointName: aapoint_01
       positionPoint: {x: 0, y: 1, z: -10}
       eulerAngle: {x: -0, y: 0, z: 0}
       freeRotation: 0
@@ -110,3 +110,29 @@ MonoBehaviour:
       eulerAngle: {x: 358.52017, y: 0.653597, z: 0.0000026122177}
       freeRotation: 1
     cameraMode: 2
+  - Name: TalkCamera
+    forward: -1
+    right: 0.5
+    defaultDistance: 1
+    maxDistance: 1
+    minDistance: 1
+    height: 1.5
+    smoothFollow: 10
+    xMouseSensitivity: 3
+    yMouseSensitivity: 3
+    yMinLimit: -180
+    yMaxLimit: 180.00003
+    xMinLimit: -360
+    xMaxLimit: 360
+    rotationOffSet: {x: 0, y: 0, z: 0}
+    cullingHeight: 0.2
+    cullingMinDist: 0.1
+    fov: 60
+    useZoom: 0
+    fixedAngle: {x: -82, y: 0}
+    lookPoints:
+    - pointName: point_01
+      positionPoint: {x: -0.0640229, y: 1.5137327, z: -0.10963011}
+      eulerAngle: {x: -1.729956, y: 0, z: -1.602625}
+      freeRotation: 0
+    cameraMode: 1

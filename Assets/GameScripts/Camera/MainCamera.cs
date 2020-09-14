@@ -159,7 +159,7 @@ public class MainCamera : MonoBehaviour
 
     #endregion
 
-    #region Camera Methos
+    #region Camera Methods
 
     public void SetLockTarget(Transform _lockTarget, float heightOffset)
     {
@@ -220,7 +220,6 @@ public class MainCamera : MonoBehaviour
             mouseX = useSmooth ? Mathf.LerpAngle(mouseX, _x, smoothBetweenState * Time.deltaTime) : _x;
             mouseY = useSmooth ? Mathf.LerpAngle(mouseY, _y, smoothBetweenState * Time.deltaTime) : _y;
         }
-
     }// Camera Rotation behaviour
 
     public void ChangePoint(string pointName)
@@ -373,7 +372,9 @@ public class MainCamera : MonoBehaviour
     public void SwitchRight(bool value = false)
     {
         switchRight = value ? -1 : 1;
-    }// Switch Camera Right 
+    }// Switch Camera Right //use to mirror  camera place
+
+    #region Private Methods
 
     void CalculeLockOnPoint()
     {
@@ -518,6 +519,9 @@ public class MainCamera : MonoBehaviour
         var _rot = Quaternion.Euler(_euler + currentState.rotationOffSet);
         transform.rotation = _rot;
         movementSpeed = Vector2.zero;
+
+        if (currentState.cameraMode.Equals(TPCameraMode.FixedAngle))
+            RotateCamera(currentState.fixedAngle.x, currentState.fixedAngle.y);//if fixed angle state (update the rotation)
     }
 
     void CameraFixed()
@@ -592,6 +596,8 @@ public class MainCamera : MonoBehaviour
 
         return value;
     }
+
+    #endregion
 
     #endregion
 }
