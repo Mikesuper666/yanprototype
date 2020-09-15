@@ -16,11 +16,11 @@ MonoBehaviour:
   tpCameraStates:
   - Name: Default
     forward: -1
-    right: 0
-    defaultDistance: 3
+    right: 0.3
+    defaultDistance: 1
     maxDistance: 3
     minDistance: 0.9
-    height: 1.4
+    height: 1.5
     smoothFollow: 10
     xMouseSensitivity: 3
     yMouseSensitivity: 2.5
@@ -33,7 +33,7 @@ MonoBehaviour:
     cullingMinDist: 0.01
     fov: 60
     useZoom: 1
-    fixedAngle: {x: 0, y: 0}
+    fixedAngle: {x: -88, y: 0}
     lookPoints:
     - pointName: aapoint_01
       positionPoint: {x: 0, y: 1, z: -10}
@@ -64,8 +64,8 @@ MonoBehaviour:
     cameraMode: 0
   - Name: Strafing
     forward: -1
-    right: 0.45
-    defaultDistance: 1.2
+    right: 0.82
+    defaultDistance: 0.5
     maxDistance: 1.5
     minDistance: 0.25
     height: 1.6
@@ -112,7 +112,7 @@ MonoBehaviour:
     cameraMode: 2
   - Name: TalkCamera
     forward: -1
-    right: 0.5
+    right: 0.25
     defaultDistance: 1
     maxDistance: 1
     minDistance: 1
@@ -120,19 +120,19 @@ MonoBehaviour:
     smoothFollow: 10
     xMouseSensitivity: 3
     yMouseSensitivity: 3
-    yMinLimit: -180
-    yMaxLimit: 180.00003
-    xMinLimit: -360
-    xMaxLimit: 360
-    rotationOffSet: {x: 0, y: 0, z: 0}
+    yMinLimit: 0
+    yMaxLimit: 10
+    xMinLimit: -66.86007
+    xMaxLimit: -46.86007
+    rotationOffSet: {x: 0.18, y: 0, z: 0}
     cullingHeight: 0.2
     cullingMinDist: 0.1
     fov: 60
     useZoom: 0
-    fixedAngle: {x: -82, y: 0}
+    fixedAngle: {x: 0, y: 0}
     lookPoints:
     - pointName: point_01
       positionPoint: {x: -0.0640229, y: 1.5137327, z: -0.10963011}
       eulerAngle: {x: -1.729956, y: 0, z: -1.602625}
       freeRotation: 0
-    cameraMode: 1
+    cameraMode: 0

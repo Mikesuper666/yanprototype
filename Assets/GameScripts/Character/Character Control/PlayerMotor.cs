@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class PlayerMotor : Character
 {
@@ -11,10 +12,16 @@ public abstract class PlayerMotor : Character
     [Header("--Debug Info--")]
     public bool debugWindow;
     public float maxStamina = 200f;
+    public float staminaRecovery = 1.2f;
     [HideInInspector]
     public float currentStamina;
-    public float rollStamina = 25f;
+    protected bool recoveringStamina;
+    [HideInInspector]
+    public float currentStaminaRecoveryDelay;
+    public float sprintStamina = 30f;
     public float jumpStamina = 30f;
+    public float rollStamina = 25f;
+    public UnityEvent OnStaminaEnd;
 
     #endregion
 
@@ -49,6 +56,7 @@ public abstract class PlayerMotor : Character
         OnlyStrafe,
         OnlyFree,
     }
+    [Tooltip("In this moment this method can changed just here in inspector")]
     public LocomotionType locomotionType = LocomotionType.FreeWithStrafe;
     public vMovementSpeed freeSpeed, strafeSpeed, talkCamera;
     [Tooltip("Use this to rotate the character using the World axis, or false to use the camera axis - CHECK for Isometric Camera")]
@@ -77,11 +85,11 @@ public abstract class PlayerMotor : Character
     public GroundCheckMethod groundCheckMethod = GroundCheckMethod.High;
     [Tooltip("Distance to became not grounded")]
     [SerializeField]
-    protected float groundMinDistance = 0.25f;
+    protected float groundMinDistance = .25f;
     [SerializeField]
-    protected float groundMaxDistance = 0.5f;
+    protected float groundMaxDistance = .5f;
     [Tooltip("ADJUST IN PLAY MODE - Offset height limit for sters - GREY Raycast in front of the legs")]
-    public float stepOffsetEnd = 0.45f;
+    public float stepOffsetEnd = .45f;
     [Tooltip("ADJUST IN PLAY MODE - Offset height origin for sters, make sure to keep slight above the floor - GREY Raycast in front of the legs")]
     public float stepOffsetStart = 0f;
     [Tooltip("Higher value will result jittering on ramps, lower values will have difficulty on steps")]
@@ -277,6 +285,101 @@ public abstract class PlayerMotor : Character
 
     #endregion
 
+    #region Health & Stamina
+
+    //public override void TakeDamage(vDamage damage)
+    //{
+    //    // don't apply damage if the character is rolling, you can add more conditions here
+    //    if (currentHealth <= 0 || (!damage.ignoreDefense && isRolling))
+    //        return;
+    //    base.TakeDamage(damage);
+    //    vInput.instance.GamepadVibration(0.25f);
+    //}
+
+    //protected override void TriggerDamageRection(vDamage damage)
+    //{
+    //    var hitReactionConditions = !actions || !customAction;
+    //    if (hitReactionConditions) base.TriggerDamageRection(damage);
+    //}
+
+    public void ReduceStamina(float value, bool accumulative)
+    {
+        if (accumulative) currentStamina -= value * Time.deltaTime;
+        else currentStamina -= value;
+        if (currentStamina < 0)
+        {
+            currentStamina = 0;
+            OnStaminaEnd.Invoke();
+        }
+    }
+
+    /// <summary>
+    /// Change the currentStamina of Character
+    /// </summary>
+    /// <param name="value"></param>
+    public virtual void ChangeStamina(int value)
+    {
+        currentStamina += value;
+        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+    }
+
+    /// <summary>
+    /// Change the MaxStamina of Character
+    /// </summary>
+    /// <param name="value"></param>
+    public virtual void ChangeMaxStamina(int value)
+    {
+        maxStamina += value;
+        if (maxStamina < 0)
+            maxStamina = 0;
+    }
+
+    //public void DeathBehaviour()
+    //{
+    //    // lock the player input
+    //    lockMovement = true;
+    //    // change the culling mode to render the animation until finish
+    //    animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+    //    // trigger die animation            
+    //    if (deathBy == DeathBy.Animation || deathBy == DeathBy.AnimationWithRagdoll)
+    //        animator.SetBool("isDead", true);
+    //}
+
+    //void CheckHealth()
+    //{
+    //    if (isDead && currentHealth > 0)
+    //    {
+    //        isDead = false;
+    //    }
+    //}
+
+    void CheckStamina()
+    {
+        // check how much stamina this action will consume
+        if (isSprinting)
+        {
+            currentStaminaRecoveryDelay = 0.25f;
+            ReduceStamina(sprintStamina, true);
+        }
+    }
+
+    public void StaminaRecovery()
+    {
+        if (currentStaminaRecoveryDelay > 0)
+        {
+            currentStaminaRecoveryDelay -= Time.deltaTime;
+        }
+        else
+        {
+            if (currentStamina > maxStamina)
+                currentStamina = maxStamina;
+            if (currentStamina < maxStamina)
+                currentStamina += staminaRecovery;
+        }
+    }
+
+    #endregion
+
     #region Locomotion
 
     public virtual void ControlLocomotion()
@@ -293,15 +396,13 @@ public abstract class PlayerMotor : Character
 
     public virtual void TalkCamera(bool _isTalking)
     {
-        lockMovement = _isTalking;      //lock player movement
-        input = Vector2.zero;                //if oldinput has value set to 0;
-        isStrafing = false;
-        anime.SetFloat("InputMagnitude", 0, 0, 0); //************
-
-        isTalking = _isTalking;         //set isTalking state true in Playerinputs state
-        
-        print("talking");
-    }
+        lockMovement = _isTalking;                  //lock player movement
+        input = Vector2.zero;                       //if oldinput has value set to 0;
+        isStrafing = false;                         //set strafing to not wreid on talk
+        isCrouching = false;                        //set false if isCrouchinto to talk
+        anime.SetFloat("InputMagnitude", 0, 0, 0);  //************
+        isTalking = _isTalking;                     //set isTalking state true in Playerinputs state
+    }//block all movements to talk with npc
 
     public virtual void StrafeMovement()
     {

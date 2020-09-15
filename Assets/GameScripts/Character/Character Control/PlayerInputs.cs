@@ -10,6 +10,7 @@ public class PlayerInputs : MonoBehaviour
     [Header("Uncheck if you need to use the cursor")]
     public bool unlockCursorOnStart = false;
     public bool showCursorOnStart = false;
+    [Header("Configure the inputs if you need")]
     public GenericInput horizontalInput = new GenericInput("Horizontal", "LeftAnalogHorizontal", "Horizontal");
     public GenericInput verticallInput = new GenericInput("Vertical", "LeftAnalogVertical", "Vertical");
     public GenericInput sprintInput = new GenericInput("LeftShift", "LeftStickClick", "LeftStickClick");
@@ -62,8 +63,8 @@ public class PlayerInputs : MonoBehaviour
         if (PlayerController.instance == cc || PlayerController.instance == null)
             StartCoroutine(CharacterInit());
 
-        ShowCursor(false);
-        LockCursor(true);
+        ShowCursor(showCursorOnStart);
+        LockCursor(unlockCursorOnStart);
     }
 
     protected virtual IEnumerator CharacterInit()
@@ -80,6 +81,11 @@ public class PlayerInputs : MonoBehaviour
             hud = HUDController.instance;
             hud.Init(cc);
         }
+    }
+
+    public virtual void SetTargetToSee(Transform target)
+    {
+        tpCamera.SetTarget(target);
     }
 
     #endregion
@@ -217,14 +223,14 @@ public class PlayerInputs : MonoBehaviour
         }
     }// Lock all the Input from the Player
 
-    public virtual void ShowCursor(bool value)
+    public void ShowCursor(bool value)
     {
         Cursor.visible = value;
     }
 
-    public virtual void LockCursor(bool value)
+    public void LockCursor(bool value)
     {
-        if (value)
+        if (!value)
             Cursor.lockState = CursorLockMode.Locked;
         else
             Cursor.lockState = CursorLockMode.None;
@@ -266,29 +272,12 @@ public class PlayerInputs : MonoBehaviour
         var X = lockCameraInput ? 0f : rotateCameraXInput.GetAxis();
         var zoom = cameraZoomInput.GetAxis();
 
-        if (Input.GetMouseButton(1))
+        //if (Input.GetMouseButton(1))
             tpCamera.RotateCamera(X, Y);//block to use mouse *****************
         tpCamera.Zoom(zoom);
 
         if (keepDirection && Vector2.Distance(cc.input, oldInput) > .2f) keepDirection = false;
     }//Set values from mouse to move camera
-
-    protected virtual void RotateWithCamera(Transform cameraTransform)
-    {
-        if (rotateToCameraWhileStrafe && cc.isStrafing && !cc.actions && !cc.lockMovement)
-        {
-            // smooth align character with aim position               
-            if (tpCamera != null && tpCamera.lockTarget)
-            {
-                cc.RotateToTarget(tpCamera.lockTarget);
-            }
-            // rotate the camera around the character and align with when the char move
-            else if (cc.input != Vector2.zero)
-            {
-                cc.RotateWithAnotherTransform(cameraTransform);
-            }
-        }
-    }
 
     protected virtual void UpdateCameraStates()
     {
@@ -328,6 +317,23 @@ public class PlayerInputs : MonoBehaviour
     {
         changeCameraState = false;
         customCameraState = string.Empty;
+    }
+
+    protected virtual void RotateWithCamera(Transform cameraTransform)
+    {
+        if (rotateToCameraWhileStrafe && cc.isStrafing && !cc.actions && !cc.lockMovement)
+        {
+            // smooth align character with aim position               
+            if (tpCamera != null && tpCamera.lockTarget)
+            {
+                cc.RotateToTarget(tpCamera.lockTarget);
+            }
+            // rotate the camera around the character and align with when the char move
+            else if (cc.input != Vector2.zero)
+            {
+                cc.RotateWithAnotherTransform(cameraTransform);
+            }
+        }
     }
 
     #endregion

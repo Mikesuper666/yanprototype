@@ -10,6 +10,8 @@ TagManager:
   - Vaultable_05m
   - Vaultable_1m
   - Floor
+  - NPC
+  - Rival
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - 
   - StopMove
   - Player
-  - 
+  - NPC
   - 
   - 
   - 

@@ -33,36 +33,41 @@ public class PlayerController : PlayerAnimator
     {
         if (customAction) return;
 
-        //know if has enough stamina to make this action
+        // know if has enough stamina to make this action
         bool staminaConditions = currentStamina > jumpStamina;
-        //conditions to do this action
+        // conditions to do this action
         bool jumpConditions = !isCrouching && isGrounded && !actions && staminaConditions && !isJumping;
-        //retun if condtions is false
+        // return if jumpCondigions is false
         if (!jumpConditions) return;
-        //trigger jump behaviour
+        // trigger jump behaviour
         jumpCounter = jumpTimer;
         isJumping = true;
-        //trigger jump animations
-        if (input.sqrMagnitude < .1f)
-            anime.CrossFadeInFixedTime("Jump", .1f);
+        // trigger jump animations
+        if (input.sqrMagnitude < 0.1f)
+            anime.CrossFadeInFixedTime("Jump", 0.1f);
         else
             anime.CrossFadeInFixedTime("JumpMove", .2f);
-        //reduce stamina
-        //todo here
+        // reduce stamina
+        if (consumeStamina)
+        {
+            ReduceStamina(jumpStamina, false);
+            currentStaminaRecoveryDelay = 1f;
+        }
     }
 
     public virtual void Roll()
     {
         bool staminaCondition = currentStamina > rollStamina;
-        //can roll even if it's on a quickturn or quckstop animation
+        // can roll even if it's on a quickturn or quickstop animation
         bool actionsRoll = !actions || (actions && (quickStop));
-        //general conditions to roll
-        bool rollConditions = (input != Vector2.zero || speed > .25f) && actionsRoll && isGrounded && staminaCondition && !isJumping;
+        // general conditions to roll
+        bool rollConditions = (input != Vector2.zero || speed > 0.25f) && actionsRoll && isGrounded && staminaCondition && !isJumping;
 
         if (!rollConditions || isRolling) return;
 
-        anime.CrossFadeInFixedTime("Roll", .1f);
-        //to do stamina
+        anime.CrossFadeInFixedTime("Roll", 0.1f);
+        ReduceStamina(rollStamina, false);
+        currentStaminaRecoveryDelay = 2f;
     }
 
     public virtual void Sprint(bool value)
@@ -108,6 +113,25 @@ public class PlayerController : PlayerAnimator
 
     #region Update Raycasts  
 
+    protected override void OnTriggerStay(Collider other)
+    {
+        try
+        {
+            CheckForAutoCrouch(other);
+        }
+        catch (UnityException e)
+        {
+            Debug.LogWarning(e.Message);
+        }
+        base.OnTriggerStay(other);
+    } /// Call this in OnTriggerEnter or OnTriggerStay to check if enter in triggerActions 
+
+    protected override void OnTriggerExit(Collider other)
+    {
+        AutoCrouchExit(other);
+        base.OnTriggerExit(other);
+    }/// Call this in OnTriggerExit to check if exit of triggerActions 
+
     protected IEnumerator UpdateRaycast()
     {
         while (true)
@@ -149,6 +173,23 @@ public class PlayerController : PlayerAnimator
             return false;
         else
             return true;
+    }
+
+    protected virtual void AutoCrouchExit(Collider other)
+    {
+        if (other.CompareTag("AutoCrouch"))
+        {
+            inCrouchArea = false;
+        }
+    }
+
+    protected virtual void CheckForAutoCrouch(Collider other)
+    {
+        if (other.gameObject.CompareTag("AutoCrouch"))
+        {
+            autoCrouch = true;
+            inCrouchArea = true;
+        }
     }
 
     #endregion
