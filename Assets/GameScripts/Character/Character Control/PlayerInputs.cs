@@ -21,7 +21,10 @@ public class PlayerInputs : MonoBehaviour
 
     [Header("Camera Settings")]
     public bool lockCameraInput;
+    [Header("Player don't turn with camera if checked")]
     public bool ignoreCameraRotation;                   //rotate player with the camera if walking/running etc
+    [Header("Check if you need (no turn the camera)")]
+    public bool rotateUsingMouse = false;
     public bool rotateToCameraWhileStrafe = true;
 
     [Header("Camera Input")]
@@ -81,11 +84,6 @@ public class PlayerInputs : MonoBehaviour
             hud = HUDController.instance;
             hud.Init(cc);
         }
-    }
-
-    public virtual void SetTargetToSee(Transform target)
-    {
-        tpCamera.SetTarget(target);
     }
 
     #endregion
@@ -272,7 +270,7 @@ public class PlayerInputs : MonoBehaviour
         var X = lockCameraInput ? 0f : rotateCameraXInput.GetAxis();
         var zoom = cameraZoomInput.GetAxis();
 
-        //if (Input.GetMouseButton(1))
+        if (rotateUsingMouse)//(Input.GetMouseButton(1))
             tpCamera.RotateCamera(X, Y);//block to use mouse *****************
         tpCamera.Zoom(zoom);
 

@@ -32,6 +32,7 @@ public class LockOn : LockOnBehaviour
     public LockOnEvent onUnLockOnTarget;
     private Canvas _aimCanvas;
     private RectTransform _aimImage;
+    public bool isTalking;              //bool avoid if talking change target aim and hide sprite aim
 
     protected bool inTarget;
     protected MeleeCombatInput tpInput;
@@ -115,6 +116,7 @@ public class LockOn : LockOnBehaviour
     public virtual void LockOnInputTalk(bool value)
     {
        _LockOn(value);
+        isTalking = value;
     }//Set lock target proximity to talk at face INSPECTOR CALL!!! //**can bug camera**//
 
     protected override void SetTarget()
@@ -128,7 +130,7 @@ public class LockOn : LockOnBehaviour
 
     protected virtual void SwitchTargetsInput()
     {
-        if (tpInput.tpCamera == null) return;
+        if (tpInput.tpCamera == null || isTalking) return;
 
         if (tpInput.tpCamera.lockTarget)
         {
@@ -168,7 +170,7 @@ public class LockOn : LockOnBehaviour
 
     protected virtual void UpdateAimImage()
     {
-        if (!aimCanvas || !aimImage) return;
+        if (!aimCanvas || !aimImage || isTalking) return;
         if (hideSprite)
         {
             aimImage.sizeDelta = aimImageSize;

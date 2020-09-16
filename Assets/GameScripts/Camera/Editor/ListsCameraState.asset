@@ -16,19 +16,19 @@ MonoBehaviour:
   tpCameraStates:
   - Name: Default
     forward: -1
-    right: 0.3
-    defaultDistance: 1
-    maxDistance: 3
-    minDistance: 0.9
-    height: 1.5
+    right: 0
+    defaultDistance: 2
+    maxDistance: 2
+    minDistance: 1
+    height: 1.2
     smoothFollow: 10
     xMouseSensitivity: 3
-    yMouseSensitivity: 2.5
-    yMinLimit: -180
-    yMaxLimit: 180
+    yMouseSensitivity: 3
+    yMinLimit: -40
+    yMaxLimit: 80
     xMinLimit: -360
     xMaxLimit: 360
-    rotationOffSet: {x: 8, y: 0, z: 0}
+    rotationOffSet: {x: 0, y: 0, z: 0}
     cullingHeight: 1.8
     cullingMinDist: 0.01
     fov: 60
@@ -64,8 +64,8 @@ MonoBehaviour:
     cameraMode: 0
   - Name: Strafing
     forward: -1
-    right: 0.82
-    defaultDistance: 0.5
+    right: 0.95
+    defaultDistance: 1
     maxDistance: 1.5
     minDistance: 0.25
     height: 1.6
@@ -79,7 +79,7 @@ MonoBehaviour:
     rotationOffSet: {x: 5, y: 0, z: 0}
     cullingHeight: 1.5
     cullingMinDist: 0.1
-    fov: 50
+    fov: 80
     useZoom: 0
     fixedAngle: {x: 0, y: 0}
     lookPoints: []
@@ -112,22 +112,22 @@ MonoBehaviour:
     cameraMode: 2
   - Name: TalkCamera
     forward: -1
-    right: 0.25
+    right: 1.09
     defaultDistance: 1
     maxDistance: 1
     minDistance: 1
-    height: 1.5
+    height: 1.25
     smoothFollow: 10
     xMouseSensitivity: 3
     yMouseSensitivity: 3
-    yMinLimit: 0
-    yMaxLimit: 10
-    xMinLimit: -66.86007
-    xMaxLimit: -46.86007
-    rotationOffSet: {x: 0.18, y: 0, z: 0}
+    yMinLimit: -180
+    yMaxLimit: 180
+    xMinLimit: -360
+    xMaxLimit: 360
+    rotationOffSet: {x: 5, y: 0, z: 0}
     cullingHeight: 0.2
     cullingMinDist: 0.1
-    fov: 60
+    fov: 50
     useZoom: 0
     fixedAngle: {x: 0, y: 0}
     lookPoints:

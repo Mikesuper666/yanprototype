@@ -3339,11 +3339,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21f97fa651963a46b1d8a7c3ee17a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathBy: 0
+  removeComponentsAfterDie: 0
+  onActiveRagdoll:
+    m_PersistentCalls:
+      m_Calls: []
+  onActionEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onActionStay:
+    m_PersistentCalls:
+      m_Calls: []
+  onActionExit:
+    m_PersistentCalls:
+      m_Calls: []
   debugWindow: 1
   maxStamina: 200
+  staminaRecovery: 1.2
   currentStamina: 0
-  rollStamina: 25
+  currentStaminaRecoveryDelay: 0
+  sprintStamina: 30
   jumpStamina: 30
+  rollStamina: 25
+  OnStaminaEnd:
+    m_PersistentCalls:
+      m_Calls: []
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
@@ -3727,6 +3747,7 @@ MonoBehaviour:
   onUnLockOnTarget:
     m_PersistentCalls:
       m_Calls: []
+  isTalking: 0
 --- !u!114 &1197259820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3828,6 +3849,7 @@ MonoBehaviour:
     mobileAxisInvert: 0
   lockCameraInput: 0
   ignoreCameraRotation: 0
+  rotateUsingMouse: 0
   rotateToCameraWhileStrafe: 1
   rotateCameraXInput:
     useInput: 1

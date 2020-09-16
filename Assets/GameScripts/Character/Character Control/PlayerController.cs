@@ -89,7 +89,7 @@ public class PlayerController : PlayerAnimator
     public virtual void Strafe()
     {
         isStrafing = !isStrafing;
-    }
+    }//called by input
 
     public virtual void Crounch()
     {
