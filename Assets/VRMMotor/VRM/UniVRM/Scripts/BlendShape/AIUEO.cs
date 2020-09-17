@@ -16,7 +16,9 @@ namespace VRM.Samples
         Coroutine m_coroutine;
 
         [SerializeField]
-        float m_wait = 0.5f;
+        float m_wait = 0.1f;
+        [SerializeField]
+        float m_interval = 0.1f;
 
         private void Awake()
         {
@@ -48,17 +50,18 @@ namespace VRM.Samples
         {
             while (true)
             {
-                yield return new WaitForSeconds(1.0f);
+                yield return new WaitForSeconds(m_interval);
 
                 var velocity = 0.1f;
 
                 yield return RoutineNest(BlendShapePreset.A, velocity, m_wait);
-                yield return RoutineNest(BlendShapePreset.I, velocity, m_wait);
-                yield return RoutineNest(BlendShapePreset.U, velocity, m_wait);
-                yield return RoutineNest(BlendShapePreset.E, velocity, m_wait);
-                yield return RoutineNest(BlendShapePreset.O, velocity, m_wait);
+                //yield return RoutineNest(BlendShapePreset.I, velocity, m_wait);
+                //yield return RoutineNest(BlendShapePreset.U, velocity, m_wait);
+                //yield return RoutineNest(BlendShapePreset.E, velocity, m_wait);
+                //yield return RoutineNest(BlendShapePreset.O, velocity, m_wait);
             }
         }
+
 
         private void OnEnable()
         {
@@ -67,7 +70,10 @@ namespace VRM.Samples
 
         private void OnDisable()
         {
-            StopCoroutine(m_coroutine);
+            BlendShapes.ImmediatelySetValue(BlendShapeKey.CreateFromPreset(BlendShapePreset.A), 0);
+        
+        Debug.Log("teste");
+        StopCoroutine(m_coroutine);
         }
     }
 }
