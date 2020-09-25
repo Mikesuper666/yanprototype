@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37562b39ff933b245ac2f35d87edbcd6, type: 3}
   m_Name: BlendShape.F5
   m_EditorClassIdentifier: 
-  m_prefab: {fileID: 0}
+  m_prefab: {fileID: 7876198152157970244, guid: 45df262fd8122c94281af0c08f270fd5, type: 3}
   BlendShapeName: F5
   Preset: 0
   Values:
