@@ -76,6 +76,8 @@ public abstract class PlayerAnimator : PlayerMotor
         //update main animations
         if (anime == null || !anime.enabled) return;
 
+        LayerControl();
+        ActionsControl();
 
         RandomIdle();
 
@@ -86,6 +88,33 @@ public abstract class PlayerAnimator : PlayerMotor
 
         LocomotionAnimation();
         DeadAnimation();
+    }
+
+    public void LayerControl()
+    {
+        baseLayerInfo = anime.GetCurrentAnimatorStateInfo(baseLayer);
+        underBodyInfo = anime.GetCurrentAnimatorStateInfo(underBodyLayer);
+        rightArmInfo = anime.GetCurrentAnimatorStateInfo(rightArmLayer);
+        leftArmInfo = anime.GetCurrentAnimatorStateInfo(leftArmLayer);
+        upperBodyInfo = anime.GetCurrentAnimatorStateInfo(upperBodyLayer);
+        fullBodyInfo = anime.GetCurrentAnimatorStateInfo(fullbodyLayer);
+    }
+
+    public void ActionsControl()
+    {
+        // to have better control of your actions, you can filter the animations state using bools 
+        // this way you can know exactly what animation state the character is playing
+
+        landHigh = baseLayerInfo.IsName("LandHigh");
+        quickStop = baseLayerInfo.IsName("QuickStop");
+
+        isRolling = baseLayerInfo.IsName("Roll");
+        inTurn = baseLayerInfo.IsName("TurnOnSpot");
+
+        // locks player movement while a animation with tag 'LockMovement' is playing
+        lockMovement = IsAnimatorTag("LockMovement");
+        // ! -- you can add the Tag "CustomAction" into a AnimatonState and the character will not perform any Melee action -- !            
+        customAction = IsAnimatorTag("CustomAction");
     }
 
     #region Locomotion Animations
@@ -119,7 +148,7 @@ public abstract class PlayerAnimator : PlayerMotor
         anime.SetBool("IsStrafing", isStrafing);
         anime.SetBool("IsCrouching", isCrouching);
         anime.SetBool("IsGrounded", isGrounded);
-        // anime.SetBool("isDead", isDead);
+        anime.SetBool("isDead", isDead);
         anime.SetFloat("GroundDistance", groundDistance);
 
         //if is not on ground set VerticalVelocity 
@@ -161,7 +190,7 @@ public abstract class PlayerAnimator : PlayerMotor
 
         // Get camera rotation.    
         Vector3 CameraDirection = camera.forward;
-        CameraDirection.y = 0.0f; // kill Y
+        CameraDirection.y = .0f; // kill Y
         Quaternion referentialShift = Quaternion.FromToRotation(Vector3.forward, CameraDirection);
         // Convert joystick input in Worldspace coordinates            
         Vector3 moveDirection = rotateByWorld ? stickDirection : referentialShift * stickDirection;
@@ -169,14 +198,14 @@ public abstract class PlayerAnimator : PlayerMotor
         Vector2 speedVec = new Vector2(input.x, input.y);
         _speed = Mathf.Clamp(speedVec.magnitude, 0, 1);
 
-        if (_speed > 0.01f) // dead zone
+        if (_speed > .01f) // dead zone
         {
             Vector3 axis = Vector3.Cross(rootDirection, moveDirection);
             _direction = Vector3.Angle(rootDirection, moveDirection) / 180.0f * (axis.y < 0 ? -1 : 1);
         }
         else
         {
-            _direction = 0.0f;
+            _direction = .0f;
         }
     }
 
@@ -222,36 +251,36 @@ public abstract class PlayerAnimator : PlayerMotor
     protected virtual void DeadAnimation()
     {
         //life system todo
-        //if (!isDead) return;
+        if (!isDead) return;
 
-        //if (!triggerDieBehaviour)
-        //{
-        //    triggerDieBehaviour = true;
-        //    DeathBehaviour();
-        //}
+        if (!triggerDieBehaviour)
+        {
+            triggerDieBehaviour = true;
+            DeathBehaviour();
+        }
 
-        //// death by animation
-        //if (deathBy == DeathBy.Animation)
-        //{
-        //    if (fullBodyInfo.IsName("Dead"))
-        //    {
-        //        if (fullBodyInfo.normalizedTime >= 0.99f && groundDistance <= 0.15f)
-        //            RemoveComponents();
-        //    }
-        //}
-        //// death by animation & ragdoll after a time
-        //else if (deathBy == DeathBy.AnimationWithRagdoll)
-        //{
-        //    if (fullBodyInfo.IsName("Dead"))
-        //    {
-        //        // activate the ragdoll after the animation finish played
-        //        if (fullBodyInfo.normalizedTime >= 0.8f)
-        //            onActiveRagdoll.Invoke();
-        //    }
-        //}
-        //// death by ragdoll
-        //else if (deathBy == DeathBy.Ragdoll)
-        //    onActiveRagdoll.Invoke();
+        // death by animation
+        if (deathBy == DeathBy.Animation)
+        {
+            if (fullBodyInfo.IsName("Dead"))
+            {
+                ////////////////////if (fullBodyInfo.normalizedTime >= 0.99f && groundDistance <= 0.15f)
+                    //RemoveComponents();*******************************************
+            }
+        }
+        // death by animation & ragdoll after a time
+        else if (deathBy == DeathBy.AnimationWithRagdoll)
+        {
+            if (fullBodyInfo.IsName("Dead"))
+            {
+                // activate the ragdoll after the animation finish played
+                if (fullBodyInfo.normalizedTime >= 0.8f)
+                    onActiveRagdoll.Invoke();
+            }
+        }
+        // death by ragdoll
+        else if (deathBy == DeathBy.Ragdoll)
+            onActiveRagdoll.Invoke();
     }
 
     public virtual void SetActionState(int value)

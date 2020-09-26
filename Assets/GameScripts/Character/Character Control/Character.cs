@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using System;
+using YanProject;
 
 [System.Serializable]
 public class OnActiveRagdoll : UnityEvent { }
 [System.Serializable]
 public class OnActionHandle : UnityEvent<Collider> { }
 [System.Serializable]
-public class Character : MonoBehaviour, ICharacter
+public abstract class Character : HealthController
 {
     #region Character Variables 
 
@@ -40,20 +41,15 @@ public class Character : MonoBehaviour, ICharacter
     [HideInInspector]
     public OnActionHandle onActionExit = new OnActionHandle();
 
-    //protected AnimatorParameter hitDirectionHash;
-    //protected AnimatorParameter reactionIDHash;
-    //protected AnimatorParameter triggerReactionHash;
-    //protected AnimatorParameter triggerResetStateHash;
-    //protected AnimatorParameter recoilIDHash;
-    //protected AnimatorParameter triggerRecoilHash;
+    protected AnimatorParameter hitDirectionHash;
+    protected AnimatorParameter reactionIDHash;
+    protected AnimatorParameter triggerReactionHash;
+    protected AnimatorParameter triggerResetStateHash;
+    protected AnimatorParameter recoilIDHash;
+    protected AnimatorParameter triggerRecoilHash;
     protected bool isInit;
 
     #endregion
-
-    protected virtual void Start()
-    {
-
-    }
 
     public virtual void Init()
     {
@@ -61,7 +57,23 @@ public class Character : MonoBehaviour, ICharacter
 
         if (anime)
         {
-            Debug.Log("pegou o componente Animator**********************************************");
+            hitDirectionHash = new AnimatorParameter(anime, "HitDirection");
+            reactionIDHash = new AnimatorParameter(anime, "ReactionID");
+            triggerReactionHash = new AnimatorParameter(anime, "TriggerReaction");
+            triggerResetStateHash = new AnimatorParameter(anime, "ResetState");
+            recoilIDHash = new AnimatorParameter(anime, "RecoilID");
+            triggerRecoilHash = new AnimatorParameter(anime, "TriggerRecoil");
+        }
+
+        var actionListeners = GetComponents<ActionListener>();
+        for (int i = 0; i < actionListeners.Length; i++)
+        {
+            if (actionListeners[i].actionEnter)
+                onActionEnter.AddListener(actionListeners[i].OnActionEnter);
+            if (actionListeners[i].actionStay)
+                onActionStay.AddListener(actionListeners[i].OnActionStay);
+            if (actionListeners[i].actionExit)
+                onActionExit.AddListener(actionListeners[i].OnActionExit);
         }
     }
 

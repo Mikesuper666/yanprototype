@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Linq;
 
-public abstract class LockOnBehaviour : extendedMonoBehaviour
+public abstract class LockOnBehaviour : mMonoBehaviour
 {
     #region Properies
 

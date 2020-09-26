@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInputs : MonoBehaviour
+public class PlayerInputs : mMonoBehaviour
 {
     #region Variables
     [Header("Default Input")]

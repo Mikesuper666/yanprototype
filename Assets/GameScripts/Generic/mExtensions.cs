@@ -71,7 +71,7 @@ namespace YanProject
             else this.isValid = false;
         }
     }
-    public static class vExtensions
+    public static class mExtensions
     {
         public static bool ContainsLayer(this LayerMask layermask, int layer)
         {

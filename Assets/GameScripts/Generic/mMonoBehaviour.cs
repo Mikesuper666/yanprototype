@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class extendedMonoBehaviour : MonoBehaviour
+public class mMonoBehaviour : MonoBehaviour
 {
     [SerializeField]
     private bool openCloseEvents;

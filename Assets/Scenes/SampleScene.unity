@@ -521,7 +521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1197259820, guid: 6d4ae3c1f2299f94591095d810ee9b23, type: 3}
       propertyPath: unlockCursorOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1197259820, guid: 6d4ae3c1f2299f94591095d810ee9b23, type: 3}
       propertyPath: showCursorOnStart
@@ -529,6 +529,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1197259820, guid: 6d4ae3c1f2299f94591095d810ee9b23, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197259820, guid: 6d4ae3c1f2299f94591095d810ee9b23, type: 3}
+      propertyPath: weakAttackInput.useInput
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 53012682354805281, guid: 6d4ae3c1f2299f94591095d810ee9b23, type: 3}
@@ -1027,12 +1031,17 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0fa414cf2b7c90148a70dece7481d6c7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14d5b293ed1598a4abc43c92356627a8, type: 3}
+--- !u!4 &389531460 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8497106875398283729, guid: 6d4ae3c1f2299f94591095d810ee9b23, type: 3}
+  m_PrefabInstance: {fileID: 114286257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &399128796 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1197259820, guid: 6d4ae3c1f2299f94591095d810ee9b23, type: 3}
   m_PrefabInstance: {fileID: 114286257}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1848005265}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1d4aab99fee2a846b4c74cf42f3d503, type: 3}
@@ -2107,12 +2116,125 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 4f1d4363c92c68d45a26e1dafc201bb5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 170c281bf3286ad40829720e2569f411, type: 3}
+--- !u!1 &1181192583 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2802388715930370772, guid: 6d4ae3c1f2299f94591095d810ee9b23, type: 3}
+  m_PrefabInstance: {fileID: 114286257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1181192584 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6201177651789128248, guid: 6d4ae3c1f2299f94591095d810ee9b23, type: 3}
+  m_PrefabInstance: {fileID: 114286257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!144 &1181192585
+CharacterJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181192583}
+  m_ConnectedBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 1, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: -6.801006, y: 1.5024662, z: -4.2064877}
+  serializedVersion: 2
+  m_SwingAxis: {x: 0, y: 1, z: 0}
+  m_TwistLimitSpring:
+    spring: 0
+    damper: 0
+  m_LowTwistLimit:
+    limit: -20
+    bounciness: 0
+    contactDistance: 0
+  m_HighTwistLimit:
+    limit: 70
+    bounciness: 0
+    contactDistance: 0
+  m_SwingLimitSpring:
+    spring: 0
+    damper: 0
+  m_Swing1Limit:
+    limit: 40
+    bounciness: 0
+    contactDistance: 0
+  m_Swing2Limit:
+    limit: 40
+    bounciness: 0
+    contactDistance: 0
+  m_EnableProjection: 0
+  m_ProjectionDistance: 0.1
+  m_ProjectionAngle: 180
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
+--- !u!54 &1181192586
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181192583}
+  serializedVersion: 2
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1181192588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181192583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13dce50d4a6159041b90644116100f15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage:
+    damageValue: 15
+    staminaBlockCost: 0
+    staminaRecoveryDelay: 0
+    ignoreDefense: 0
+    activeRagdoll: 0
+    sender: {fileID: 0}
+    receiver: {fileID: 0}
+    hitPosition: {x: 0, y: 0, z: 0}
+    hitReaction: 1
+    recoil_id: 0
+    reaction_id: 0
+    attackName: 
+  hitBoxes:
+  - {fileID: 1417169016}
+  damageModifier: 0
+  canApplyDamage: 0
+  onDamageHit:
+    m_PersistentCalls:
+      m_Calls: []
+  onRecoilHit:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnableDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisableDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  meleeManager: {fileID: 0}
 --- !u!114 &1197259807 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1197259807, guid: 6d4ae3c1f2299f94591095d810ee9b23, type: 3}
   m_PrefabInstance: {fileID: 114286257}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1848005265}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba45829bdc50fad428a2edb94b03783d, type: 3}
@@ -2123,7 +2245,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 648443312, guid: 6d4ae3c1f2299f94591095d810ee9b23, type: 3}
   m_PrefabInstance: {fileID: 114286257}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1848005265}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c21f97fa651963a46b1d8a7c3ee17a68, type: 3}
@@ -2339,6 +2461,67 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 37370f0272547a841ba13017cb2a7730, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba18c1bde64781d4b9df24984bf28f2a, type: 3}
+--- !u!1 &1417169013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1417169014}
+  - component: {fileID: 1417169016}
+  - component: {fileID: 1417169015}
+  m_Layer: 9
+  m_Name: Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1417169014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417169013}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.21357411, y: -0.00046551228, z: 0.01762968}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 389531460}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1417169015
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417169013}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.15241289, y: 0.07891631, z: 0.18318415}
+  m_Center: {x: -0.04482293, y: -0.0057662725, z: -0.012589216}
+--- !u!114 &1417169016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417169013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ca0ce45978ada4b862bf3dd65b8c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackObject: {fileID: 0}
+  trigger: {fileID: 1417169015}
+  damagePercentage: 100
+  triggerType: -1
 --- !u!1001 &1440437984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2956,6 +3139,78 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 063544d9180ba394b9e7c497c8372a7d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dc361791225ad843ab368b904bb18b4, type: 3}
+--- !u!1 &1848005265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5184904144818289301, guid: 6d4ae3c1f2299f94591095d810ee9b23, type: 3}
+  m_PrefabInstance: {fileID: 114286257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1848005277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848005265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466bad0598ddb944596cb832ac979c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openCloseEvents: 0
+  openCloseWindow: 0
+  selectedToolbar: 0
+  Members:
+  - transform: {fileID: 1181192584}
+    bodyPart: leftArm
+    attackObject: {fileID: 1181192588}
+    isHuman: 1
+  defaultDamage:
+    damageValue: 10
+    staminaBlockCost: 5
+    staminaRecoveryDelay: 1
+    ignoreDefense: 0
+    activeRagdoll: 0
+    sender: {fileID: 0}
+    receiver: {fileID: 0}
+    hitPosition: {x: 0, y: 0, z: 0}
+    hitReaction: 1
+    recoil_id: 0
+    reaction_id: 0
+    attackName: 
+  hitProperties:
+    hitDamageTags:
+    - Enemy
+    useRecoil: 1
+    drawRecoilGizmos: 0
+    recoilRange: 90
+    hitRecoilLayer:
+      serializedVersion: 2
+      m_Bits: 1
+  leftWeapon: {fileID: 0}
+  rightWeapon: {fileID: 0}
+  onDamageHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onRecoilHit:
+    m_PersistentCalls:
+      m_Calls: []
+  defaultAttackDistance: 1
+  defaultStaminaCost: 20
+  defaultStaminaRecoveryDelay: 1
+  defaultDefenseRate: 50
+  defaultDefenseRange: 90
 --- !u!1 &1858039860 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6693317484988138954, guid: 170c281bf3286ad40829720e2569f411, type: 3}

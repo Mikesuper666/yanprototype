@@ -202,8 +202,8 @@ public class MainCamera : MonoBehaviour
                 movementSpeed.y = -y;
                 if (!lockCamera)
                 {
-                    mouseY = vExtensions.ClampAngle(mouseY, lerpState.yMinLimit, lerpState.yMaxLimit);
-                    mouseX = vExtensions.ClampAngle(mouseX, lerpState.xMinLimit, lerpState.xMaxLimit);
+                    mouseY = mExtensions.ClampAngle(mouseY, lerpState.yMinLimit, lerpState.yMaxLimit);
+                    mouseX = mExtensions.ClampAngle(mouseX, lerpState.xMinLimit, lerpState.xMaxLimit);
                 }
                 else
                 {
@@ -400,8 +400,8 @@ public class MainCamera : MonoBehaviour
         else
             y = rotation.eulerAngles.x;
 
-        mouseY = vExtensions.ClampAngle(y, currentState.yMinLimit, currentState.yMaxLimit);
-        mouseX = vExtensions.ClampAngle(x, currentState.xMinLimit, currentState.xMaxLimit);
+        mouseY = mExtensions.ClampAngle(y, currentState.yMinLimit, currentState.yMaxLimit);
+        mouseX = mExtensions.ClampAngle(x, currentState.xMinLimit, currentState.xMaxLimit);
     }
 
     void CameraMovement()

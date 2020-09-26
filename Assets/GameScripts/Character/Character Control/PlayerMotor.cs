@@ -287,20 +287,31 @@ public abstract class PlayerMotor : Character
 
     #region Health & Stamina
 
-    //public override void TakeDamage(vDamage damage)
-    //{
-    //    // don't apply damage if the character is rolling, you can add more conditions here
-    //    if (currentHealth <= 0 || (!damage.ignoreDefense && isRolling))
-    //        return;
-    //    base.TakeDamage(damage);
-    //    vInput.instance.GamepadVibration(0.25f);
-    //}
+    public override void TakeDamage(Damage damage)
+    {
+        // don't apply damage if the character is rolling, you can add more conditions here
+        if (currentHealth <= 0 || (!damage.ignoreDefense && isRolling))
+            return;
+        base.TakeDamage(damage);
+        //Input.instance.GamepadVibration(0.25f);
+    }
 
     //protected override void TriggerDamageRection(vDamage damage)
     //{
     //    var hitReactionConditions = !actions || !customAction;
     //    if (hitReactionConditions) base.TriggerDamageRection(damage);
     //}
+
+    public void DeathBehaviour()
+    {
+        // lock the player input
+        lockMovement = true;
+        // change the culling mode to render the animation until finish
+        anime.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+        // trigger die animation            
+        if (deathBy == DeathBy.Animation || deathBy == DeathBy.AnimationWithRagdoll)
+            anime.SetBool("IsDead", true);
+    }
 
     public void ReduceStamina(float value, bool accumulative)
     {

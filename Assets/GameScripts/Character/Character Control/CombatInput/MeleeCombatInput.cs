@@ -5,7 +5,7 @@ using UnityEngine;
 
 // here you can modify the Melee Combat inputs
 // if you want to modify the Basic Locomotion inputs, go to the vThirdPersonInput
-public class MeleeCombatInput : PlayerInputs
+public class MeleeCombatInput : PlayerInputs, IMeleeFighter
 {
     [System.Serializable]
     public class OnUpdateEvent : UnityEngine.Events.UnityEvent<MeleeCombatInput> { }
@@ -17,7 +17,7 @@ public class MeleeCombatInput : PlayerInputs
     public GenericInput strongAttackInput = new GenericInput("Alpha1", false, "RT", true, "RT", false);
     public GenericInput blockInput = new GenericInput("Mouse1", "LB", "LB");
 
-    //protected MeleeManager meleeManager;
+    protected MeleeManager meleeManager;
     public bool isAttacking { get; protected set; }
     public bool isBlocking { get; protected set; }
     //public bool isArmed { get { return meleeManager != null && (meleeManager.rightWeapon != null || (meleeManager.leftWeapon != null && meleeManager.leftWeapon.meleeType != vMeleeType.OnlyDefense)); } }
@@ -35,7 +35,7 @@ public class MeleeCombatInput : PlayerInputs
         {
             isAttacking = false;
             isBlocking = false;
-            //cc.isStrafing = false;
+            cc.isStrafing = false;
         }
     }
 
@@ -57,8 +57,8 @@ public class MeleeCombatInput : PlayerInputs
         if (!lockMeleeInput)
         {
             MeleeWeakAttackInput();
-            MeleeStrongAttackInput();
-            BlockingInput();
+            //MeleeStrongAttackInput();
+            //BlockingInput();
         }
         else
         {
@@ -78,30 +78,30 @@ public class MeleeCombatInput : PlayerInputs
     {
         if (cc.anime == null) return;
 
-        //if (weakAttackInput.GetButtonDown() && MeleeAttackStaminaConditions())
-        // {
-        //   cc.anime.SetInteger("AttackID", meleeManager.GetAttackID());
-        // cc.anime.SetTrigger("WeakAttack");
-        //}
+        if (weakAttackInput.GetButtonDown()) //&& MeleeAttackStaminaConditions())
+        {
+           cc.anime.SetInteger("AttackID", meleeManager.GetAttackID());
+           cc.anime.SetTrigger("WeakAttack");
+        }
     }/// WEAK ATK INPUT
 
-    protected virtual void MeleeStrongAttackInput()
-    {
-        if (cc.anime == null) return;
+    //protected virtual void MeleeStrongAttackInput()
+    //{
+    //    if (cc.anime == null) return;
 
         //if (strongAttackInput.GetButtonDown() && MeleeAttackStaminaConditions())
         //{
         //    //   cc.anime.SetInteger("AttackID", meleeManager.GetAttackID());
         //    // cc.anime.SetTrigger("StrongAttack");
         //}
-    }/// STRONG ATK INPUT
+    //}/// STRONG ATK INPUT
 
-    protected virtual void BlockingInput()
-    {
-        if (cc.anime == null) return;
+    //protected virtual void BlockingInput()
+    //{
+    //    if (cc.anime == null) return;
 
-        isBlocking = blockInput.GetButton() && cc.currentStamina > 0;
-    }/// BLOCK INPUT
+    //    isBlocking = blockInput.GetButton() && cc.currentStamina > 0;
+    //}/// BLOCK INPUT
 
     #endregion
 
@@ -113,14 +113,14 @@ public class MeleeCombatInput : PlayerInputs
     //    return result >= 0;
     //}
 
-    //protected virtual bool MeleeAttackConditions
-    //{
-    //    get
-    //    {
-    //        if (meleeManager == null) meleeManager = GetComponent<vMeleeManager>();
-    //        return meleeManager != null && !cc.customAction && !cc.lockMovement && !cc.isCrouching;
-    //    }
-    //}
+    protected virtual bool MeleeAttackConditions
+    {
+        get
+        {
+            if (meleeManager == null) meleeManager = GetComponent<MeleeManager>();
+            return meleeManager != null && !cc.customAction && !cc.lockMovement && !cc.isCrouching;
+        }
+    }
 
     #endregion
 
@@ -128,11 +128,11 @@ public class MeleeCombatInput : PlayerInputs
 
     protected virtual void UpdateMeleeAnimations()
     {
-        //if (cc.animator == null || meleeManager == null) return;
-        //cc.animator.SetInteger("AttackID", meleeManager.GetAttackID());
-        //cc.animator.SetInteger("DefenseID", meleeManager.GetDefenseID());
-        //cc.animator.SetBool("IsBlocking", isBlocking);
-        //cc.animator.SetFloat("MoveSet_ID", meleeManager.GetMoveSetID(), .2f, Time.deltaTime);
+        if (cc.anime == null || meleeManager == null) return;
+        cc.anime.SetInteger("AttackID", meleeManager.GetAttackID());
+        cc.anime.SetInteger("DefenseID", meleeManager.GetDefenseID());
+        cc.anime.SetBool("IsBlocking", isBlocking);
+        cc.anime.SetFloat("MoveSet_ID", meleeManager.GetMoveSetID(), .2f, Time.deltaTime);
     }
 
     protected virtual void UpdateAttackBehaviour()
@@ -150,8 +150,8 @@ public class MeleeCombatInput : PlayerInputs
 
     public void OnEnableAttack()
     {
-        // cc.currentStaminaRecoveryDelay = meleeManager.GetAttackStaminaRecoveryDelay();
-        //cc.currentStamina -= meleeManager.GetAttackStaminaCost();
+        cc.currentStaminaRecoveryDelay = meleeManager.GetAttackStaminaRecoveryDelay();
+        cc.currentStamina -= meleeManager.GetAttackStaminaCost();
         cc.lockRotation = true;
         isAttacking = true;
     }
@@ -164,7 +164,7 @@ public class MeleeCombatInput : PlayerInputs
 
     public void ResetAttackTriggers()
     {
-        // cc.animator.ResetTrigger("WeakAttack");
+         cc.anime.ResetTrigger("WeakAttack");
         // cc.animator.ResetTrigger("StrongAttack");
     }
 
@@ -183,24 +183,24 @@ public class MeleeCombatInput : PlayerInputs
         cc.anime.ResetTrigger("StrongAttack");
     }
 
-    //public void OnReceiveAttack(vDamage damage, vIMeleeFighter attacker)
-    //{
-    //    // character is blocking
-    //    if (!damage.ignoreDefense && isBlocking && meleeManager != null && meleeManager.CanBlockAttack(attacker.character.transform.position))
-    //    {
-    //        var damageReduction = meleeManager.GetDefenseRate();
-    //        if (damageReduction > 0)
-    //            damage.ReduceDamage(damageReduction);
-    //        if (attacker != null && meleeManager != null && meleeManager.CanBreakAttack())
-    //            attacker.OnRecoil(meleeManager.GetDefenseRecoilID());
-    //        meleeManager.OnDefense();
-    //        cc.currentStaminaRecoveryDelay = damage.staminaRecoveryDelay;
-    //        cc.currentStamina -= damage.staminaBlockCost;
-    //    }
-    //    // apply damage
-    //    damage.hitReaction = !isBlocking;
-    //    cc.TakeDamage(damage);
-    //}
+    public void OnReceiveAttack(Damage damage, IMeleeFighter attacker)
+    {
+        // character is blocking
+        if (!damage.ignoreDefense && isBlocking && meleeManager != null && meleeManager.CanBlockAttack(attacker.character.transform.position))
+        {
+            var damageReduction = meleeManager.GetDefenseRate();
+            if (damageReduction > 0)
+                damage.ReduceDamage(damageReduction);
+            if (attacker != null && meleeManager != null && meleeManager.CanBreakAttack())
+                attacker.OnRecoil(meleeManager.GetDefenseRecoilID());
+            meleeManager.OnDefense();
+            cc.currentStaminaRecoveryDelay = damage.staminaRecoveryDelay;
+            cc.currentStamina -= damage.staminaBlockCost;
+        }
+        // apply damage
+        damage.hitReaction = !isBlocking;
+        cc.TakeDamage(damage);
+    }
 
     public Character character
     {
