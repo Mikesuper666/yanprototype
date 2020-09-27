@@ -8,9 +8,11 @@ public abstract class PlayerMotor : Character
     #region All Variables
 
     #region Stamina
-
-    [Header("--Debug Info--")]
+    [EditorToolbar("Debug", order =5)]
+    [Header("--- Debug Info ---")]
     public bool debugWindow;
+
+    [EditorToolbar("Stamina", order =1)]
     public float maxStamina = 200f;
     public float staminaRecovery = 1.2f;
     [HideInInspector]
@@ -21,20 +23,21 @@ public abstract class PlayerMotor : Character
     public float sprintStamina = 30f;
     public float jumpStamina = 30f;
     public float rollStamina = 25f;
+    [EditorToolbar("Events")]
     public UnityEvent OnStaminaEnd;
 
     #endregion
 
     #region Layers
 
-    [Header("--Layers--")]
-    [Tooltip("Layers that character can walk on")]
+    [EditorToolbar("Layers", order =2)]
+    [Tooltip("Layers that the character can walk on")]
     public LayerMask groundLayer = 1 << 0;
-    [Tooltip("What objects can make the character auto crounch")]
+    [Tooltip("What objects can make the character auto crouch")]
     public LayerMask autoCrouchLayer = 1 << 0;
-    [Tooltip("[SPHERECAST] ADJUST IN PLAY MODE - White spherecast to put just above the head, this will make the character Auto-crouch if something hit the shpere")]
+    [Tooltip("[SPHERECAST] ADJUST IN PLAY MODE - White Spherecast put just above the head, this will make the character Auto-Crouch if something hit the sphere.")]
     public float headDetect = .95f;
-    [Tooltip("Select the layers the your character will stop moving close to")]
+    [Tooltip("Select the layers the your character will stop moving when close to")]
     public LayerMask stopMoveLayer;
     [Tooltip("[RAYCAST] Stopmove Raycast Height")]
     public float stopMoveHeight = .65f;
@@ -45,7 +48,7 @@ public abstract class PlayerMotor : Character
 
     #region Character Variables
 
-    [Header("--Character Variables--")]
+    [EditorToolbar("Locomotion", order =3)]
     [Tooltip("Turn off if you have 'in place' animations and use this values above to move the character, or use with root motion as extra speed")]
     public bool useRootMotion = false;
 
@@ -58,17 +61,18 @@ public abstract class PlayerMotor : Character
     }
     [Tooltip("In this moment this method can changed just here in inspector")]
     public LocomotionType locomotionType = LocomotionType.FreeWithStrafe;
+
     public vMovementSpeed freeSpeed, strafeSpeed, talkCamera;
     [Tooltip("Use this to rotate the character using the World axis, or false to use the camera axis - CHECK for Isometric Camera")]
     public bool rotateByWorld = false;
     [Tooltip("Check this to use the TurnOnSpot animations")]
     public bool turnOnSpotAnim = false;
+    [Tooltip("Can control the roll direction")]
+    public bool rollControl = false;
     [Tooltip("Put your Random Idle animations at the AnimatorController and select a value to randomize, 0 is disable.")]
     public float randomIdleTime = 0f;
 
-    [Tooltip("Can control the roll direction")]
-    public bool rollControl = false;
-
+    [EditorToolbar("Jump", order =3)]
     [Tooltip("Check to control the character while jumping")]
     public bool jumpAirControl = true;
     [Tooltip("How much time the character will be jumping")]
@@ -81,7 +85,9 @@ public abstract class PlayerMotor : Character
     public float jumpHeight = 4f;
 
     public enum GroundCheckMethod { Low, High }
-    [Tooltip("Ground check method to check ground distance an ground angle\nSimple: use just a single raycast\nNormal: Use raycast and spherecast\nComplex: use all sphereCastAll")]
+
+    [EditorToolbar("Grounded", order =4)]
+    [Tooltip("Ground Check Method To check ground Distance and ground angle\n*Simple: Use just a single Raycast\n*Normal: Use Raycast and SphereCast\n*Complex: Use SphereCastAll")]
     public GroundCheckMethod groundCheckMethod = GroundCheckMethod.High;
     [Tooltip("Distance to became not grounded")]
     [SerializeField]
@@ -97,8 +103,13 @@ public abstract class PlayerMotor : Character
     [Tooltip("Max angle to walk")]
     [Range(30, 75)]
     public float slopeLimit = 75f;
+    [Tooltip("Velocity to slide when on a slope limit ramp")]
+    [Range(0, 10)]
+    public float slideVelocity = 7;
     [Tooltip("Apply extra gravity when the character is not grounded")]
     public float extraGravity = -10f;
+    [Tooltip("Turn the Ragdoll On when falling at high speed (check VerticalVelocity) - leave the value with 0 if you don't want this feature")]
+    public float ragdollVel = -16f;
 
     protected float groundDistance;
     public RaycastHit groundHit;
@@ -119,7 +130,6 @@ public abstract class PlayerMotor : Character
         }
     }
 
-    [Header("--Actions--")]
     //Movement bools
     [HideInInspector]
     public bool
@@ -155,11 +165,23 @@ public abstract class PlayerMotor : Character
         }
     }
 
+    protected void RemoveComponents()
+    {
+        if (!removeComponentsAfterDie) return;
+        if (_capsuleCollider != null) Destroy(_capsuleCollider);
+        if (_rigidbody != null) Destroy(_rigidbody);
+        if (anime != null) Destroy(anime);
+        var comps = GetComponents<MonoBehaviour>();
+        for (int i = 0; i < comps.Length; i++)
+        {
+            Destroy(comps[i]);
+        }
+    }
+
     #endregion
 
     #region Direction Variable
 
-    [Header("--Direction Variable--")]
     [HideInInspector]
     public Vector3 targetDirection;
     [HideInInspector]
@@ -177,7 +199,6 @@ public abstract class PlayerMotor : Character
 
     #region Components
 
-    [Header("--Components--")]
     [HideInInspector]
     internal Rigidbody _rigidbody;                                                  //acess the rigidbody component
     [HideInInspector]
@@ -278,9 +299,16 @@ public abstract class PlayerMotor : Character
 
     public virtual void UpdateMotor()
     {
+        CheckHealth();
+        CheckStamina();
         CheckGround();
+        CheckRagdoll();
         StopMove();
+        ControlCapsuleHeight();
         ControlJumpBehaviour();
+        //ControlLocomotion();
+        StaminaRecovery();
+        HealthRecovery();
     }
 
     #endregion
@@ -293,24 +321,13 @@ public abstract class PlayerMotor : Character
         if (currentHealth <= 0 || (!damage.ignoreDefense && isRolling))
             return;
         base.TakeDamage(damage);
-        //Input.instance.GamepadVibration(0.25f);
+        sInput.instance.GamepadVibration(0.25f);//Add vibration on controller if used
     }
 
-    //protected override void TriggerDamageRection(vDamage damage)
-    //{
-    //    var hitReactionConditions = !actions || !customAction;
-    //    if (hitReactionConditions) base.TriggerDamageRection(damage);
-    //}
-
-    public void DeathBehaviour()
+    protected override void TriggerDamageRection(Damage damage)
     {
-        // lock the player input
-        lockMovement = true;
-        // change the culling mode to render the animation until finish
-        anime.cullingMode = AnimatorCullingMode.AlwaysAnimate;
-        // trigger die animation            
-        if (deathBy == DeathBy.Animation || deathBy == DeathBy.AnimationWithRagdoll)
-            anime.SetBool("IsDead", true);
+        var hitReactionConditions = !actions || !customAction;
+        if (hitReactionConditions) base.TriggerDamageRection(damage);
     }
 
     public void ReduceStamina(float value, bool accumulative)
@@ -324,45 +341,37 @@ public abstract class PlayerMotor : Character
         }
     }
 
-    /// <summary>
-    /// Change the currentStamina of Character
-    /// </summary>
-    /// <param name="value"></param>
     public virtual void ChangeStamina(int value)
     {
         currentStamina += value;
         currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
-    }
+    }/// Change the currentStamina of Character
 
-    /// <summary>
-    /// Change the MaxStamina of Character
-    /// </summary>
-    /// <param name="value"></param>
     public virtual void ChangeMaxStamina(int value)
     {
         maxStamina += value;
         if (maxStamina < 0)
             maxStamina = 0;
+    }/// Change the MaxStamina of Character
+
+    public void DeathBehaviour()
+    {
+        // lock the player input
+        lockMovement = true;
+        // change the culling mode to render the animation until finish
+        anime.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+        // trigger die animation            
+        if (deathBy == DeathBy.Animation || deathBy == DeathBy.AnimationWithRagdoll)
+            anime.SetBool("IsDead", true);
     }
 
-    //public void DeathBehaviour()
-    //{
-    //    // lock the player input
-    //    lockMovement = true;
-    //    // change the culling mode to render the animation until finish
-    //    animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
-    //    // trigger die animation            
-    //    if (deathBy == DeathBy.Animation || deathBy == DeathBy.AnimationWithRagdoll)
-    //        animator.SetBool("isDead", true);
-    //}
-
-    //void CheckHealth()
-    //{
-    //    if (isDead && currentHealth > 0)
-    //    {
-    //        isDead = false;
-    //    }
-    //}
+    void CheckHealth()
+    {
+        if (isDead && currentHealth > 0)
+        {
+            isDead = false;
+        }
+    }
 
     void CheckStamina()
     {
@@ -794,6 +803,31 @@ public abstract class PlayerMotor : Character
 
     #region Cooliders Check
 
+    void ControlCapsuleHeight()
+    {
+        if(isCrouching || isRolling || landHigh)
+        {
+            _capsuleCollider.center = colliderCenter / 1.5f;
+            _capsuleCollider.height = colliderHeight / 1.5f;
+        }
+        else
+        {
+            //return to original values
+            _capsuleCollider.center = colliderCenter;
+            _capsuleCollider.radius = colliderRadius;
+            _capsuleCollider.height = colliderHeight;
+        }
+    }
+
+    public void DisableGravityAndCollision()
+    {
+        anime.SetFloat("InputHorizontal", 0f);
+        anime.SetFloat("InputVertical", 0f);
+        anime.SetFloat("VerticalVelocity", 0f);
+        _rigidbody.useGravity = false;
+        _capsuleCollider.isTrigger = true;
+    }/// Disables rigibody gravity, turn the capsule collider trigger and reset all input from the animator.
+
     public void EnableGravityAndCollision(float normalizedTime)
     {
         //enable coolider and gravity at the end of the animation
@@ -802,7 +836,7 @@ public abstract class PlayerMotor : Character
             _capsuleCollider.isTrigger = false;
             _rigidbody.useGravity = true;
         }
-    }
+    }/// Turn rigidbody gravity on the uncheck the capsulle collider as Trigger when the animation has finish playing
 
     #endregion
 
@@ -850,6 +884,45 @@ public abstract class PlayerMotor : Character
             targetDirection = keepDirection ? targetDirection : new Vector3(input.x, 0, input.y);
     }// Update the targetDirection variable using referenceTransform or just input.Rotate by word  the referenceDirection
 
+
+    #endregion
+
+    #region Ragdoll
+
+    void CheckRagdoll()
+    {
+        if (ragdollVel == 0) return;
+
+        // check your verticalVelocity and assign a value on the variable RagdollVel at the Player Inspector
+        if (verticalVelocity <= ragdollVel && groundDistance <= 0.1f)
+        {
+            onActiveRagdoll.Invoke();
+        }
+    }
+
+    public override void ResetRagdoll()
+    {
+        lockMovement = false;
+        verticalVelocity = 0;
+        ragdolled = false;
+        _rigidbody.WakeUp();
+
+        _rigidbody.useGravity = true;
+        _rigidbody.isKinematic = false;
+        _capsuleCollider.isTrigger = false;
+    }
+
+    public override void EnableRagdoll()
+    {
+        anime.SetFloat("InputHorizontal", 0f);
+        anime.SetFloat("InputVertical", 0f);
+        anime.SetFloat("VerticalVelocity", 0f);
+        ragdolled = true;
+        _capsuleCollider.isTrigger = true;
+        _rigidbody.useGravity = false;
+        _rigidbody.isKinematic = true;
+        lockMovement = true;
+    }
 
     #endregion
 

@@ -8,7 +8,6 @@ using YanProject;
 
 public class EditorHelper :Editor
 {
-
     public static string GetPropertyName<T>(Expression<Func<T>> propertyLambda)
     {
         var me = propertyLambda.Body as MemberExpression;
@@ -70,7 +69,7 @@ public class EditorBase : Editor
         }
 
         skin = Resources.Load("skin") as GUISkin;
-        m_Logo = Resources.Load("icon_v2") as Texture2D;
+        m_Logo = Resources.Load("icon") as Texture2D;
         var prop = serializedObject.GetIterator();
 
         if (((mMonoBehaviour)target) != null)
@@ -208,7 +207,7 @@ public class EditorBase : Editor
             }
         }
     }
-    /*
+    
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
@@ -225,11 +224,11 @@ public class EditorBase : Editor
             {
                 var titles = getToobarTitles();
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("m_Script"));
-                GUILayout.Space(10);
+                GUILayout.Space(10);//Espaço acima no inspector
                 var customToolbar = skin.GetStyle("customToolbar");
                 selectedToolBar = GUILayout.SelectionGrid(selectedToolBar, titles, titles.Length > 2 ? 3 : titles.Length, customToolbar, GUILayout.MinWidth(250));
                 if (!(selectedToolBar < toolbars.Count)) selectedToolBar = 0;
-                GUILayout.Space(10);
+                GUILayout.Space(10);//Espaço entre os botões de hidden no inspector
                 //GUILayout.Box(toolbars[selectedToolBar].title, skin.box, GUILayout.ExpandWidth(true));
                 var ignore = getIgnoreProperties(toolbars[selectedToolBar]);
                 var ignoreProperties = ignore.Append(ignore_vMono);
@@ -241,7 +240,7 @@ public class EditorBase : Editor
         {
             if (headerAttribute == null)
             {
-                if (((vMonoBehaviour)target) != null)
+                if (((mMonoBehaviour)target) != null)
                     DrawPropertiesExcluding(serializedObject, ignore_vMono);
                 else
                     base.OnInspectorGUI();
@@ -312,7 +311,7 @@ public class EditorBase : Editor
         return props.vToArray();
     }
 
-    public string[] getIgnoreProperties(vToolBar toolbar)
+    public string[] getIgnoreProperties(ToolBar toolbar)
     {
         List<string> props = new List<string>();
         for (int i = 0; i < toolbars.Count; i++)
@@ -331,5 +330,5 @@ public class EditorBase : Editor
 
         props.Add("m_Script");
         return props.vToArray();
-    }*/
+    }
 }

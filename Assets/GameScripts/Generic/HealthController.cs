@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ClassHeader("HealthController")]
 public class HealthController : mMonoBehaviour, IHealthController
 {
     [System.Serializable]
     public class OnDead : UnityEngine.Events.UnityEvent<GameObject> { }
     [System.Serializable]
     public class OnReceiveDamage : UnityEngine.Events.UnityEvent<Damage> { }
+    [EditorToolbar("Health", order = 0)]
+    [SerializeField] //[ReadOnly] 
     protected bool _isDead;
+    //[BarDisplay("maxHealth", true)]
     [SerializeField] 
     protected float _currentHealth;
 
@@ -50,6 +54,7 @@ public class HealthController : mMonoBehaviour, IHealthController
     public float healthRecoveryDelay = 0f;
     [HideInInspector]
     public float currentHealthRecoveryDelay;
+    [EditorToolbar("Events", order = 100)]
     public OnReceiveDamage onReceiveDamage = new OnReceiveDamage();
     public OnDead onDead = new OnDead();
 

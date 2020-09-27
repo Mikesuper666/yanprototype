@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// here you can modify the Melee Combat inputs
+// if you want to modify the Basic Locomotion inputs, go to the PlayerInput
+[ClassHeader ("PLAYER CONTROLLER MANAGER", iconName = "inputIcon")]
 public class PlayerController : PlayerAnimator
 {
     public static PlayerController instance;

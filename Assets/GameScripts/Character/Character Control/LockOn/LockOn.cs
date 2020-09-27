@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ClassHeader("MELEE LOCK-ON", iconName = "lock")]
 public class LockOn : LockOnBehaviour
 {
     #region Variables

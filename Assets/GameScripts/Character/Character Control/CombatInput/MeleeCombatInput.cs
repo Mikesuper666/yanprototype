@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 // here you can modify the Melee Combat inputs
-// if you want to modify the Basic Locomotion inputs, go to the vThirdPersonInput
+// if you want to modify the Basic Locomotion inputs, go to the PlayerInput
+using YanProject;
+using System.Linq;
+
+[ClassHeader("MELEE INPUT MANAGER", iconName = "inputIcon")]
 public class MeleeCombatInput : PlayerInputs, IMeleeFighter
 {
     [System.Serializable]
@@ -12,6 +17,7 @@ public class MeleeCombatInput : PlayerInputs, IMeleeFighter
 
     #region Variables             
 
+    [EditorToolbar("Inputs")]
     [Header("Melee Inputs")]
     public GenericInput weakAttackInput = new GenericInput("Mouse0", "RB", "RB");
     public GenericInput strongAttackInput = new GenericInput("Alpha1", false, "RT", true, "RT", false);
@@ -20,7 +26,7 @@ public class MeleeCombatInput : PlayerInputs, IMeleeFighter
     protected MeleeManager meleeManager;
     public bool isAttacking { get; protected set; }
     public bool isBlocking { get; protected set; }
-    //public bool isArmed { get { return meleeManager != null && (meleeManager.rightWeapon != null || (meleeManager.leftWeapon != null && meleeManager.leftWeapon.meleeType != vMeleeType.OnlyDefense)); } }
+    public bool isArmed { get { return meleeManager != null && (meleeManager.rightWeapon != null || (meleeManager.leftWeapon != null && meleeManager.leftWeapon.meleeType != MeleeWeapon.MeleeType.OnlyDefense)); } }
 
     [HideInInspector]
     public OnUpdateEvent onUpdateInput;
@@ -41,6 +47,14 @@ public class MeleeCombatInput : PlayerInputs, IMeleeFighter
 
     #endregion
 
+    public virtual bool lockInventory
+    {
+        get
+        {
+            return isAttacking || cc.isDead;
+        }
+    }
+
     protected override void FixedUpdate()
     {
         UpdateMeleeAnimations();
@@ -53,7 +67,7 @@ public class MeleeCombatInput : PlayerInputs, IMeleeFighter
         if (cc == null)
             return;
 
-        //if (MeleeAttackConditions && !lockMeleeInput)
+        if (MeleeAttackConditions && !lockMeleeInput)
         if (!lockMeleeInput)
         {
             MeleeWeakAttackInput();
@@ -78,40 +92,40 @@ public class MeleeCombatInput : PlayerInputs, IMeleeFighter
     {
         if (cc.anime == null) return;
 
-        if (weakAttackInput.GetButtonDown()) //&& MeleeAttackStaminaConditions())
+        if (weakAttackInput.GetButtonDown() && MeleeAttackStaminaConditions())
         {
            cc.anime.SetInteger("AttackID", meleeManager.GetAttackID());
            cc.anime.SetTrigger("WeakAttack");
         }
     }/// WEAK ATK INPUT
 
-    //protected virtual void MeleeStrongAttackInput()
-    //{
-    //    if (cc.anime == null) return;
+    protected virtual void MeleeStrongAttackInput()
+    {
+        if (cc.anime == null) return;
 
-        //if (strongAttackInput.GetButtonDown() && MeleeAttackStaminaConditions())
-        //{
-        //    //   cc.anime.SetInteger("AttackID", meleeManager.GetAttackID());
-        //    // cc.anime.SetTrigger("StrongAttack");
-        //}
-    //}/// STRONG ATK INPUT
+        if (strongAttackInput.GetButtonDown() && MeleeAttackStaminaConditions())
+        {
+             cc.anime.SetInteger("AttackID", meleeManager.GetAttackID());
+             cc.anime.SetTrigger("StrongAttack");
+        }
+    }/// STRONG ATK INPUT
 
-    //protected virtual void BlockingInput()
-    //{
-    //    if (cc.anime == null) return;
+    protected virtual void BlockingInput()
+    {
+        if (cc.anime == null) return;
 
-    //    isBlocking = blockInput.GetButton() && cc.currentStamina > 0;
-    //}/// BLOCK INPUT
+        isBlocking = blockInput.GetButton() && cc.currentStamina > 0;
+    }/// BLOCK INPUT
 
     #endregion
 
     #region Conditions
 
-    //protected virtual bool MeleeAttackStaminaConditions()
-    //{
-    //    var result = cc.currentStamina - meleeManager.GetAttackStaminaCost();
-    //    return result >= 0;
-    //}
+    protected virtual bool MeleeAttackStaminaConditions()
+    {
+        var result = cc.currentStamina - meleeManager.GetAttackStaminaCost();
+        return result >= 0;
+    }
 
     protected virtual bool MeleeAttackConditions
     {
@@ -165,7 +179,7 @@ public class MeleeCombatInput : PlayerInputs, IMeleeFighter
     public void ResetAttackTriggers()
     {
          cc.anime.ResetTrigger("WeakAttack");
-        // cc.animator.ResetTrigger("StrongAttack");
+         cc.anime.ResetTrigger("StrongAttack");
     }
 
     public void BreakAttack(int breakAtkID)

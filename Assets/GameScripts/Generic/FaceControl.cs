@@ -2,8 +2,10 @@
 using UnityEngine;
 using VRM;
 
-public class FaceControl : MonoBehaviour
+[ClassHeader("face control", iconName = "icon")]
+public class FaceControl : mMonoBehaviour
 {
+    [EditorToolbar("Mouth Controll", order = 1)]
     [SerializeField]
     public VRMBlendShapeProxy BlendShapes;
     private void Reset()
@@ -22,6 +24,10 @@ public class FaceControl : MonoBehaviour
 
     [SerializeField]
     float m_closeSeconds = 0.1f;
+
+    [EditorToolbar("Eyes controll", order = 2)]
+    [SerializeField]
+    float testVariable = 0.1f;
 
     protected Coroutine m_coroutine;
 

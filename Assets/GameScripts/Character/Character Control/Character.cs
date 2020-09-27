@@ -9,6 +9,8 @@ using YanProject;
 [System.Serializable]
 public class OnActiveRagdoll : UnityEvent { }
 [System.Serializable]
+
+[ClassHeader("Character")]
 public class OnActionHandle : UnityEvent<Collider> { }
 [System.Serializable]
 public abstract class Character : HealthController
@@ -22,6 +24,7 @@ public abstract class Character : HealthController
         Ragdoll
     }
 
+    [EditorToolbar("Health")]
     public DeathBy deathBy = DeathBy.Animation;
     public bool removeComponentsAfterDie;
     // get the animator component of character
@@ -31,6 +34,8 @@ public abstract class Character : HealthController
     // [HideInInspector]
     public bool ragdolled { get; set; }
 
+
+    [EditorToolbar("Events")]
     [Header("--- Character Events ---")]
     public OnActiveRagdoll onActiveRagdoll = new OnActiveRagdoll();
     [Header("Check if Character is in Trigger with tag Action")]
@@ -102,6 +107,32 @@ public abstract class Character : HealthController
         onActionExit.Invoke(other);
     }
 
+    public override void TakeDamage(Damage damage)
+    {
+        base.TakeDamage(damage);
+        TriggerDamageRection(damage);
+    }
 
-
+    protected virtual void TriggerDamageRection(Damage damage)
+    {
+        if (anime != null && anime.enabled && !damage.activeRagdoll && currentHealth > 0)
+        {
+            if (hitDirectionHash.isValid) anime.SetInteger(hitDirectionHash, (int)transform.HitAngle(damage.sender.position));
+            // trigger hitReaction animation
+            if (damage.hitReaction)
+            {
+                // set the ID of the reaction based on the attack animation state of the attacker - Check the MeleeAttackBehaviour script
+                if (reactionIDHash.isValid) anime.SetInteger(reactionIDHash, damage.reaction_id);
+                if (triggerReactionHash.isValid) anime.SetTrigger(triggerReactionHash);
+                if (triggerResetStateHash.isValid) anime.SetTrigger(triggerResetStateHash);
+            }
+            else
+            {
+                if (recoilIDHash.isValid) anime.SetInteger(recoilIDHash, damage.recoil_id);
+                if (triggerRecoilHash.isValid) anime.SetTrigger(triggerRecoilHash);
+                if (triggerResetStateHash.isValid) anime.SetTrigger(triggerResetStateHash);
+            }
+        }
+        if (damage.activeRagdoll) onActiveRagdoll.Invoke();
+    }
 }

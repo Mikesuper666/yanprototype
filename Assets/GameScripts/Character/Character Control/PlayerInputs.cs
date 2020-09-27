@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ClassHeader("Input Manager", iconName = "inputIcon")]
 public class PlayerInputs : mMonoBehaviour
 {
+
     #region Variables
+
+    [EditorToolbar("Inputs")]
     [Header("Default Input")]
     public bool lockInput;                            //use to block all character inputs
     [Header("Uncheck if you need to use the cursor")]
@@ -19,7 +23,7 @@ public class PlayerInputs : mMonoBehaviour
     public GenericInput jumpInput = new GenericInput("Space", "X", "X");
     public GenericInput rollInput = new GenericInput("Q", "B", "B");
 
-    [Header("Camera Settings")]
+    [EditorToolbar("Camera Settings")]
     public bool lockCameraInput;
     [Header("Player don't turn with camera if checked")]
     public bool ignoreCameraRotation;                   //rotate player with the camera if walking/running etc
@@ -27,11 +31,11 @@ public class PlayerInputs : mMonoBehaviour
     public bool rotateUsingMouse = false;
     public bool rotateToCameraWhileStrafe = true;
 
+    [EditorToolbar("Inputs")]
     [Header("Camera Input")]
     public GenericInput rotateCameraXInput = new GenericInput("Mouse X", "RightAnalogHorizontal", "Mouse X");
     public GenericInput rotateCameraYInput = new GenericInput("Mouse Y", "RightAnalogVertical", "Mouse Y");
     public GenericInput cameraZoomInput = new GenericInput("Mouse ScrollWheel", "", "");
-    public GenericInput mouseRight = new GenericInput("Fire2", "", "");
     [HideInInspector]
     public MainCamera tpCamera;                         // acess camera info
     [HideInInspector]
@@ -45,12 +49,27 @@ public class PlayerInputs : mMonoBehaviour
     [HideInInspector]
     public bool keepDirection;                          // keep the current direction in case you change the cameraState
     protected Vector2 oldInput;
+
+    [EditorToolbar("Events")]
     public UnityEngine.Events.UnityEvent OnLateUpdate;
 
     [HideInInspector]
     public PlayerController cc;
     [HideInInspector]
     public HUDController hud;
+    protected bool updateIK = false;
+    protected bool isInit;
+
+    protected InputDevice inputDevice { get { return sInput.instance.inputDevice; } }
+    public Animator anime
+    {
+        get
+        {
+            if (cc == null) cc = GetComponent<PlayerController>();
+            if (cc.anime == null) return GetComponent<Animator>();
+            return cc.anime;
+        }
+    }
 
     #endregion
 
@@ -97,12 +116,14 @@ public class PlayerInputs : mMonoBehaviour
         CameraInput();                      // update camera input
         UpdateCameraStates();               // update camera states
         OnLateUpdate.Invoke();
+        updateIK = false;
     }
 
     protected virtual void FixedUpdate()
     {
         cc.ControlLocomotion();
         cc.AirControl();            //update air behaviour
+        updateIK = true;
     }
 
     protected virtual void Update()
@@ -112,6 +133,7 @@ public class PlayerInputs : mMonoBehaviour
         InputHandle();      //update input Methods
         cc.UpdateMotor();   //call update methods
         UpdateHUD();          //Update HUD Graphics
+                              //cc.UpdateAnimator();                // call ThirdPersonAnimator methods
     }
 
     protected virtual void InputHandle()
@@ -202,7 +224,7 @@ public class PlayerInputs : mMonoBehaviour
     {
         if (rollInput.GetButtonDown())
             cc.Roll();
-    }
+    }//set Q button to roll
 
     #endregion
 

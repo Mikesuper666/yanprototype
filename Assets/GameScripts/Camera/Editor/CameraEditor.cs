@@ -8,10 +8,12 @@ using YanProject;
 [CanEditMultipleObjects]
 public class CameraEditor : Editor
 {
+    GUISkin skin;
     MainCamera tpCamera;
     bool hasPointCopy;
     Vector3 pointCopy;
     int indexSelected;
+    private Texture2D m_Logo = null;
 
     void OnSceneGUI()
     {
@@ -59,6 +61,7 @@ public class CameraEditor : Editor
 
     void OnEnable()
     {
+        m_Logo = (Texture2D)Resources.Load("camera", typeof(Texture2D));
         indexSelected = 0;
         tpCamera = (MainCamera)target;
         tpCamera.indexLookPoint = 0;
@@ -72,10 +75,14 @@ public class CameraEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        if (!skin) skin = Resources.Load("skin") as GUISkin;
+        GUI.skin = skin;
+
         tpCamera = (MainCamera)target;
 
         EditorGUILayout.Space();
         GUILayout.BeginVertical("CAMERA CONFIFURATIONS", "window");
+        GUILayout.Label(m_Logo, GUILayout.MaxHeight(25));
         GUILayout.Space(5);
 
         if (tpCamera.cullingLayer == 0)
@@ -92,6 +99,7 @@ public class CameraEditor : Editor
 
         GUILayout.BeginVertical("CAMERA STATES", "window");
 
+        GUILayout.Label(m_Logo, GUILayout.MaxHeight(25));
         GUILayout.Space(5);
 
         EditorGUILayout.HelpBox("This settings will always load in this List, you can create more List's with different settings for another characters or scenes", MessageType.Info);
@@ -318,7 +326,7 @@ public class CameraEditor : Editor
         return false;
     }
 
-    [MenuItem("Invector/Resources/New CameraState List Data")]
+    [MenuItem("YanProject/Resources/New CameraState List Data")]
     static void NewCameraStateData()
     {
         vScriptableObjectUtility.CreateAsset<CameraListData>();

@@ -264,8 +264,8 @@ public abstract class PlayerAnimator : PlayerMotor
         {
             if (fullBodyInfo.IsName("Dead"))
             {
-                ////////////////////if (fullBodyInfo.normalizedTime >= 0.99f && groundDistance <= 0.15f)
-                    //RemoveComponents();*******************************************
+                if (fullBodyInfo.normalizedTime >= 0.99f && groundDistance <= 0.15f)
+                    RemoveComponents();
             }
         }
         // death by animation & ragdoll after a time
