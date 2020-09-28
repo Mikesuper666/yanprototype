@@ -65,6 +65,7 @@ public abstract class PlayerMotor : Character
     public vMovementSpeed freeSpeed, strafeSpeed, talkCamera;
     [Tooltip("Use this to rotate the character using the World axis, or false to use the camera axis - CHECK for Isometric Camera")]
     public bool rotateByWorld = false;
+    [Header("Use this bool if you want animations to character agressive turns")]
     [Tooltip("Check this to use the TurnOnSpot animations")]
     public bool turnOnSpotAnim = false;
     [Tooltip("Can control the roll direction")]

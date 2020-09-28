@@ -12,6 +12,9 @@ TagManager:
   - Floor
   - NPC
   - Rival
+  - Ignore Ragdoll
+  - Ragdoll
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -24,11 +27,11 @@ TagManager:
   - StopMove
   - Player
   - NPC
-  - 
-  - 
-  - 
-  - 
-  - 
+  - BodyPart
+  - Enemy
+  - Action
+  - HeadTrack
+  - CompanionAI
   - 
   - 
   - 

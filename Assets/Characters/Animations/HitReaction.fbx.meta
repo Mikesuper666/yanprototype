@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 1096247ef0538484fa1ea65d8d0e7814
+guid: d87febc7637ef684b88b5dfa96401f16
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable:
   - first:
-      74: 4348485665485846014
-    second: Death
+      74: 4846110152475017098
+    second: Vbot_hit
   externalObjects: {}
   materials:
     materialImportMode: 1

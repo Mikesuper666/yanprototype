@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEditor;
 using System;
+using static MeleeWeapon;
 
 [CanEditMultipleObjects]
 [CustomEditor(typeof(MeleeAttackObject), true)]
@@ -11,6 +11,7 @@ public class MeleeAttackObjectEditor : Editor
     GUISkin skin;
     bool fodoutEvents;
     bool showDefenseRange;
+    private Texture2D m_Logo = null;
 
     void OnSceneGUI()
     {
@@ -19,7 +20,7 @@ public class MeleeAttackObjectEditor : Editor
         var meleeWeapon = (attackObject as MeleeWeapon);
         if(meleeWeapon != null && showDefenseRange)
         {
-            if (meleeWeapon.meleeType != MeleeWeapon.MeleeType.OnlyAttack)
+            if (meleeWeapon.meleeType != MeleeType.OnlyAttack)
             {
                 var root = meleeWeapon.GetComponentInParent<MeleeManager>();
 
@@ -38,6 +39,7 @@ public class MeleeAttackObjectEditor : Editor
     {
         attackObject = (MeleeAttackObject)target;
         skin = Resources.Load("skin") as GUISkin;
+        m_Logo = Resources.Load("meleeIcon") as Texture2D;
     }
 
     public override void OnInspectorGUI()
@@ -49,28 +51,30 @@ public class MeleeAttackObjectEditor : Editor
 
         serializedObject.Update();
         var meleeWeapon = (attackObject as MeleeWeapon);
-        GUILayout.BeginVertical(attackObject != null ? "Melee Weapon" : "Melee Attack Object", "window");
+        GUILayout.BeginVertical(meleeWeapon != null ? "Melee Weapon" : "Melee Attack Object", "window");
+        GUILayout.Label(m_Logo, GUILayout.MaxHeight(25));
 
         if (skin) 
             GUILayout.Space(30);
 
         if(meleeWeapon != null)
         {
-            if (meleeWeapon.meleeType == MeleeWeapon.MeleeType.OnlyAttack)
+            if (meleeWeapon.meleeType == MeleeType.OnlyAttack)
                 EditorGUILayout.HelpBox("The defense settingd will be ignored in this mode", MessageType.Info);
-            else if (meleeWeapon.meleeType == MeleeWeapon.MeleeType.OnlyDefense)
+            else if (meleeWeapon.meleeType == MeleeType.OnlyDefense)
                 EditorGUILayout.HelpBox("Tha attack settings is ignores in this mode", MessageType.Info);
         }
 
         base.OnInspectorGUI();
 
-        if(meleeWeapon != null)
+        if (meleeWeapon != null)
         {
             var root = meleeWeapon.GetComponentInParent<MeleeManager>();
-            if (root && meleeWeapon.meleeType != MeleeWeapon.MeleeType.OnlyAttack)
+            if (root && meleeWeapon.meleeType != MeleeType.OnlyAttack)
+            {
                 showDefenseRange = EditorGUILayout.Toggle("Show Defense Range", showDefenseRange);
-            else
-                showDefenseRange = false;
+            }
+            else showDefenseRange = false;
         }
 
         GUILayout.BeginVertical("box");

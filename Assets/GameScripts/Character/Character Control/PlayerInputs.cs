@@ -28,7 +28,7 @@ public class PlayerInputs : mMonoBehaviour
     [Header("Player don't turn with camera if checked")]
     public bool ignoreCameraRotation;                   //rotate player with the camera if walking/running etc
     [Header("Check if you need (no turn the camera)")]
-    public bool rotateUsingMouse = false;
+    public bool rotateUsingMouse = true;
     public bool rotateToCameraWhileStrafe = true;
 
     [EditorToolbar("Inputs")]

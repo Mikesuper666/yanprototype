@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 1096247ef0538484fa1ea65d8d0e7814
+guid: f871270fd61b6ab41ac1d622532c2a91
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable:
   - first:
-      74: 4348485665485846014
-    second: Death
+      74: 2961684634267048774
+    second: Vbot_hit_block
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -18,8 +18,7 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: "Copied Avatar Rig Configuration mis-match. Transform hierarchy
-      does not match:\n\tTransform 'Invector Pelvis' for human bone 'Hips' not found\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
