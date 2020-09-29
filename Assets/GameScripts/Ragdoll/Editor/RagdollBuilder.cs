@@ -2,7 +2,6 @@
 using UnityEditor;
 using System.Collections;
 using System;
-using UnityEngine.TestTools;
 
 class RagdollBuilder : ScriptableWizard
 {
@@ -43,7 +42,7 @@ class RagdollBuilder : ScriptableWizard
     public bool proportionalMass = true;
     [Header("Total Mass will be ignored and set to 1 if Proportional Mass is true")]
     public float totalMass = 20;
-    public float strength = 0.0F;
+    public float strength = .0F;
 
     Vector3 right = Vector3.right;
     Vector3 up = Vector3.up;
@@ -137,6 +136,7 @@ class RagdollBuilder : ScriptableWizard
         if (flipForward)
             forward = -forward;
     }
+
     private void Update()
     {
         errorString = CheckConsistency();

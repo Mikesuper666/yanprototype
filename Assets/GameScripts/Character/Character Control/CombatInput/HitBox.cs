@@ -1,5 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
+using System;
 
 public class HitBox : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class HitBox : MonoBehaviour
     public HitBoxType triggerType = HitBoxType.Damage | HitBoxType.Recoil;
     private bool canHit;
 
+    /// <summary>
+    /// Desenha a caixa de collider no character conforme o HitBoxType
+    /// </summary>
     void OnDrawGizmos()
     {
         trigger = gameObject.GetComponent<Collider>();

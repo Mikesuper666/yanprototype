@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeWeapon : MeleeAttackObject
+public class MeleeWeapon : MeleeAttackObject, IEquipment
 {
     [Header("Melee Weapon Settings")]
     public MeleeType meleeType = MeleeType.OnlyAttack;
@@ -33,14 +33,14 @@ public class MeleeWeapon : MeleeAttackObject
 
     public void OnEquip(Item item)
     {
-        //var damage = item.attributes.Find(attribute => attribute.name == Invector.vItemManager.vItemAttributes.Damage);
-        //var staminaCost = item.attributes.Find(attribute => attribute.name == Invector.vItemManager.vItemAttributes.StaminaCost);
-        //var defenseRate = item.attributes.Find(attribute => attribute.name == Invector.vItemManager.vItemAttributes.DefenseRate);
-        //var defenseRange = item.attributes.Find(attribute => attribute.name == Invector.vItemManager.vItemAttributes.DefenseRange);
-        //if (damage != null) this.damage.damageValue = damage.value;
-        //if (staminaCost != null) this.staminaCost = staminaCost.value;
-        //if (defenseRate != null) this.defenseRate = defenseRate.value;
-        //if (defenseRange != null) this.defenseRange = defenseRate.value;
+        var damage = item.attributes.Find(attribute => attribute.name == ItemAttributes.Damage);//??????????????
+        var staminaCost = item.attributes.Find(attribute => attribute.name == ItemAttributes.StaminaCost);
+        var defenseRate = item.attributes.Find(attribute => attribute.name == ItemAttributes.DefenseRate);
+        var defenseRange = item.attributes.Find(attribute => attribute.name == ItemAttributes.DefenseRange);
+        if (damage != null) this.damage.damageValue = damage.value;
+        if (staminaCost != null) this.staminaCost = staminaCost.value;
+        if (defenseRate != null) this.defenseRate = defenseRate.value;
+        if (defenseRange != null) this.defenseRange = defenseRate.value;
     }
 
     public void OnUnequip(Item item)

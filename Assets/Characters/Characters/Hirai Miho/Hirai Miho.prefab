@@ -552,13 +552,13 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1960ec8bf2223d54bb1c7a677cba9bc3, type: 2}
-  - {fileID: 2100000, guid: 1960ec8bf2223d54bb1c7a677cba9bc3, type: 2}
-  - {fileID: 2100000, guid: 1960ec8bf2223d54bb1c7a677cba9bc3, type: 2}
-  - {fileID: 2100000, guid: 1960ec8bf2223d54bb1c7a677cba9bc3, type: 2}
-  - {fileID: 2100000, guid: 8e4b4c28c811f824b9558ea238f4b22e, type: 2}
-  - {fileID: 2100000, guid: 4d877f1745a6bee4f811dba283ac51ac, type: 2}
-  - {fileID: 2100000, guid: 497b3c510d39512458940c4b4227ede2, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 2100000, guid: ca875ed553f3f3f44a50450057969995, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -1099,6 +1099,8 @@ GameObject:
   - component: {fileID: 3697212068604655129}
   - component: {fileID: 1392733243007437456}
   - component: {fileID: 2469437391033043222}
+  - component: {fileID: 792553305227088844}
+  - component: {fileID: -7292251372624819068}
   m_Layer: 0
   m_Name: Hirai Miho
   m_TagString: Untagged
@@ -1382,6 +1384,36 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurveXRangeDegree: 90
     CurveYRangeDegree: 10
+--- !u!54 &792553305227088844
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002231744544247841}
+  serializedVersion: 2
+  m_Mass: 50
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
+--- !u!136 &-7292251372624819068
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002231744544247841}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.27053592
+  m_Height: 1.6937633
+  m_Direction: 1
+  m_Center: {x: -0.021624804, y: 0.7914231, z: -0.022245258}
 --- !u!1 &2037625222173358303
 GameObject:
   m_ObjectHideFlags: 0
@@ -2376,16 +2408,16 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6714e64c180f12041ab4570b1078fcfb, type: 2}
-  - {fileID: 2100000, guid: ad10ef23a2f576a419003b4b51d16edd, type: 2}
-  - {fileID: 2100000, guid: ea9c97bf2a6fda844b8f5e3e81cefa11, type: 2}
-  - {fileID: 2100000, guid: d76f64c574215b4458e6d6e3d77d4117, type: 2}
-  - {fileID: 2100000, guid: e2364c9e12251a847a7f0203a2610efc, type: 2}
-  - {fileID: 2100000, guid: 9ce10b6b796c2fd4ea84182547d8671a, type: 2}
-  - {fileID: 2100000, guid: 6d12c351e703c484694dd6aefe60e224, type: 2}
-  - {fileID: 2100000, guid: e76dd1519f7dea04cb9636344e97d35e, type: 2}
-  - {fileID: 2100000, guid: e76dd1519f7dea04cb9636344e97d35e, type: 2}
-  - {fileID: 2100000, guid: b6b1adfd3ac0289498681a7eb8554b91, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

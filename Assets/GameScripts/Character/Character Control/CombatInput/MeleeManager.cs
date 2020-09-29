@@ -136,8 +136,12 @@ public class MeleeManager : mMonoBehaviour
         damage.damageValue *= damageMultiplier > 1 ? damageMultiplier : 1;
         hitInfo.attackObject.ApplyDamage(hitInfo.hitBox, hitInfo.targetCollider, damage);
         onDamageHit.Invoke(hitInfo);
-    }/// Listener of Damage Event
+    }// Listener of Damage Event
 
+    /// <summary>
+    /// Listerner do Recoil
+    /// </summary>
+    /// <param name="hitInfo"></param>
     public virtual void OnRecoilHit(HitInfo hitInfo)
     {
         if (hitProperties.useRecoil && InRecoilRange(hitInfo) && !inRecoil)
@@ -148,19 +152,19 @@ public class MeleeManager : mMonoBehaviour
             onRecoilHit.Invoke(hitInfo);
             Invoke("ResetRecoil", 1f);
         }
-    }/// Listener of Recoil Event
+    }// Listener of Recoil Event
 
     public virtual void OnDefense()
     {
-        if (leftWeapon != null && leftWeapon.meleeType != MeleeWeapon.MeleeType.OnlyAttack && leftWeapon.gameObject.activeSelf)
+        if (leftWeapon != null && leftWeapon.meleeType != MeleeType.OnlyAttack && leftWeapon.gameObject.activeSelf)
         {
             leftWeapon.OnDefense();
         }
-        if (rightWeapon != null && rightWeapon.meleeType != MeleeWeapon.MeleeType.OnlyAttack && rightWeapon.gameObject.activeSelf)
+        if (rightWeapon != null && rightWeapon.meleeType != MeleeType.OnlyAttack && rightWeapon.gameObject.activeSelf)
         {
             rightWeapon.OnDefense();
         }
-    }/// Call Weapon Defense Events.
+    }// Call Weapon Defense Events.
 
     #endregion
 
@@ -176,19 +180,23 @@ public class MeleeManager : mMonoBehaviour
     {
         if (rightWeapon != null && rightWeapon.meleeType != MeleeType.OnlyDefense && rightWeapon.gameObject.activeSelf) return rightWeapon.staminaCost;
         return defaultStaminaCost;
-    }/// Get StaminaCost
+    }// Get StaminaCost
 
     public virtual float GetAttackStaminaRecoveryDelay()
     {
         if (rightWeapon != null && rightWeapon.meleeType != MeleeType.OnlyDefense && rightWeapon.gameObject.activeSelf) return rightWeapon.staminaRecoveryDelay;
         return defaultStaminaRecoveryDelay;
-    }/// Get StaminaCost
+    }// Get StaminaCost
 
+    /// <summary>
+    /// Pega a distancia ideal para Defesa
+    /// </summary>
+    /// <returns></returns>
     public virtual float GetAttackDistance()
     {
         if (rightWeapon != null && rightWeapon.meleeType != MeleeType.OnlyDefense && rightWeapon.gameObject.activeSelf) return rightWeapon.distanceToAttack;
         return defaultAttackDistance;
-    }/// Get ideal distance for the attack
+    }// Get ideal distance for the attack
 
     public virtual int GetDefenseID()
     {
@@ -203,7 +211,7 @@ public class MeleeManager : mMonoBehaviour
             return rightWeapon.defenseID;
         }
         return 0;
-    }/// Get Current Defense ID
+    }// Get Current Defense ID
 
     public int GetDefenseRate()
     {
@@ -216,14 +224,14 @@ public class MeleeManager : mMonoBehaviour
             return rightWeapon.defenseRate;
         }
         return defaultDefenseRate;
-    }/// Get Defense Rate of Melee Defense 
+    }// Get Defense Rate of Melee Defense 
 
     public virtual int GetMoveSetID()
     {
         if (rightWeapon != null && rightWeapon.gameObject.activeSelf) return rightWeapon.movesetID;
         // if (leftWeapon != null && leftWeapon.gameObject.activeSelf) return leftWeapon.MovesetID;
         return 0;
-    }/// Get Current MoveSet ID
+    }// Get Current MoveSet ID
 
     public virtual bool CanBreakAttack()
     {
@@ -236,7 +244,7 @@ public class MeleeManager : mMonoBehaviour
             return rightWeapon.breakAttack;
         }
         return false;
-    }/// Check if defence can break Attack
+    }// Check if defence can break Attack
 
     public virtual int GetDefenseRecoilID()
     {

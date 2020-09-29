@@ -45,9 +45,9 @@ public abstract class PlayerAnimator : PlayerMotor
             if (isStrafing)
             {
                 var _speed = Mathf.Abs(strafeMagnitude);
-                if (_speed <= 0.5f)
+                if (_speed <= .5f)
                     ControlSpeed(strafeSpeed.walkSpeed);
-                else if (_speed > 0.5f && _speed <= 1f)
+                else if (_speed > .5f && _speed <= 1f)
                     ControlSpeed(strafeSpeed.runningSpeed);
                 else
                     ControlSpeed(strafeSpeed.sprintSpeed);
@@ -58,9 +58,9 @@ public abstract class PlayerAnimator : PlayerMotor
             else if (!isStrafing)
             {
                 //free extra speed
-                if (speed <= 0.5f)
+                if (speed <= .5f)
                     ControlSpeed(freeSpeed.walkSpeed);
-                else if (speed > 0.5 && speed <= 1f)
+                else if (speed > .5 && speed <= 1f)
                     ControlSpeed(freeSpeed.runningSpeed);
                 else
                     ControlSpeed(freeSpeed.sprintSpeed);
@@ -143,12 +143,15 @@ public abstract class PlayerAnimator : PlayerMotor
         }
     }
 
+    /// <summary>
+    /// Atualiza as animações - Chama as animações conforme a necessidade
+    /// </summary>
     public void LocomotionAnimation()
     {
         anime.SetBool("IsStrafing", isStrafing);
         anime.SetBool("IsCrouching", isCrouching);
         anime.SetBool("IsGrounded", isGrounded);
-        anime.SetBool("isDead", isDead);
+        anime.SetBool("IsDead", isDead);
         anime.SetFloat("GroundDistance", groundDistance);
 
         //if is not on ground set VerticalVelocity 
@@ -158,21 +161,21 @@ public abstract class PlayerAnimator : PlayerMotor
         if (isStrafing)
         {
             // strafe movement get the input 1 or -1
-            anime.SetFloat("InputHorizontal", !stopMove && !lockMovement ? direction : 0f, 0.25f, Time.deltaTime);
-            anime.SetFloat("InputVertical", !stopMove && !lockMovement ? speed : 0f, 0.25f, Time.deltaTime);
+            anime.SetFloat("InputHorizontal", !stopMove && !lockMovement ? direction : 0f, .25f, Time.deltaTime);
+            anime.SetFloat("InputVertical", !stopMove && !lockMovement ? speed : 0f, .25f, Time.deltaTime);
         }
         else
         {
             var dir = transform.InverseTransformDirection(targetDirection);
             dir.z *= speed;
-            anime.SetFloat("InputVertical", !stopMove && !lockMovement ? dir.z : 0f, 0.25f, Time.deltaTime);
-            anime.SetFloat("InputHorizontal", !stopMove && !lockMovement ? dir.x : 0f, 0.25f, Time.deltaTime);
+            anime.SetFloat("InputVertical", !stopMove && !lockMovement ? dir.z : 0f, .25f, Time.deltaTime);
+            anime.SetFloat("InputHorizontal", !stopMove && !lockMovement ? dir.x : 0f, .25f, Time.deltaTime);
         }
 
         if (turnOnSpotAnim)
         {
             GetTurnOnSpotDirection(transform, Camera.main.transform, ref _speed, ref _direction, input);
-            FreeTurnOnSpot(_direction * 180);
+            FreeTurnOnSpot(_direction * 180);//to call this need be active, animations to turn
         }
     }
 
@@ -248,6 +251,9 @@ public abstract class PlayerAnimator : PlayerMotor
         }
     }
 
+    /// <summary>
+    /// Chama sequenquência de animação de morte do personagem
+    /// </summary>
     protected virtual void DeadAnimation()
     {
         //life system todo
@@ -264,7 +270,7 @@ public abstract class PlayerAnimator : PlayerMotor
         {
             if (fullBodyInfo.IsName("Dead"))
             {
-                if (fullBodyInfo.normalizedTime >= 0.99f && groundDistance <= 0.15f)
+                if (fullBodyInfo.normalizedTime >= .99f && groundDistance <= .15f)
                     RemoveComponents();
             }
         }
@@ -327,7 +333,7 @@ public abstract class PlayerAnimator : PlayerMotor
         if (landHigh)
         {
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
-            sInput.instance.GamepadVibration(0.25f);
+            sInput.instance.GamepadVibration(.25f);
 #endif
         }
     }

@@ -10,7 +10,7 @@ public class GameControllerEditor : Editor
 
     void OnEnable()
     {
-        m_Logo = (Texture2D)Resources.Load("icon_v2", typeof(Texture2D));
+        m_Logo = (Texture2D)Resources.Load("inputIcon", typeof(Texture2D));
     }
 
     public override void OnInspectorGUI()
@@ -19,7 +19,7 @@ public class GameControllerEditor : Editor
         if (!skin) skin = Resources.Load("skin") as GUISkin;
         GUI.skin = skin;
 
-        GUILayout.BeginVertical("GameController by Invector", "window");
+        GUILayout.BeginVertical("GameController", "window");
         GUILayout.Label(m_Logo, GUILayout.MaxHeight(25));
         GUILayout.Space(5);
 

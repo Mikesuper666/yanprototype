@@ -10,8 +10,8 @@ public class Item : ScriptableObject
     [HideInInspector]
     public string description = "Item Description";
     [HideInInspector]
-    //public ItemType type;
-    //[HideInInspector]
+    public ItemType type;
+    [HideInInspector]
     public Sprite icon;
     [HideInInspector]
     public bool stackable = true;
@@ -23,8 +23,8 @@ public class Item : ScriptableObject
     public GameObject originalObject;
     [HideInInspector]
     public GameObject dropObject;
-    //[HideInInspector]
-   // public List<ItemAttribute> attributes = new List<ItemAttribute>();
+    [HideInInspector]
+    public List<ItemAttribute> attributes = new List<ItemAttribute>();
     [HideInInspector]
     public bool isInEquipArea;
     #endregion
@@ -67,12 +67,12 @@ public class Item : ScriptableObject
                 return icon.texture;
             }
         }
-    }
+    }// Convert Sprite icon to texture
 
-   /* public ItemAttribute GetItemAttribute(string name)
+    public ItemAttribute GetItemAttribute(string name)
     {
         if (attributes != null)
             return attributes.Find(attribute => attribute.name.ToString().Equals(name));
         return null;
-    }*/
+    }
 }

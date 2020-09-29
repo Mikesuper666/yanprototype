@@ -112,7 +112,7 @@ namespace PixelCrushers.DialogueSystem
             }
 
             // Visible meta files:
-            var originalExternalVersionControl = EditorSettings.externalVersionControl;
+            var originalExternalVersionControl = EditorSettings.externalVersionControl;//<--- need to see this in a near future
             if (!EditorSettings.externalVersionControl.Equals(ExternalVersionControlVisibleMetaFiles))
             {
                 cancel = EditorUtility.DisplayCancelableProgressBar(DialogTitle, "Switching Version Control Mode to Visible Meta Files. This may take a while.", 0);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ClassHeader("Comment", false, "icon_v2")]
+[ClassHeader("Comment", false, "barkIcon")]
 public class Comment : mMonoBehaviour
 {
 #if UNITY_EDITOR

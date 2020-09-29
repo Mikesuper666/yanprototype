@@ -10,11 +10,8 @@ public class HealthController : mMonoBehaviour, IHealthController
     [System.Serializable]
     public class OnReceiveDamage : UnityEngine.Events.UnityEvent<Damage> { }
     [EditorToolbar("Health", order = 0)]
-    [SerializeField] //[ReadOnly] 
-    protected bool _isDead;
-    //[BarDisplay("maxHealth", true)]
-    [SerializeField] 
-    protected float _currentHealth;
+    [SerializeField] [ReadOnly] protected bool _isDead;
+   [BarDisplay("maxHealth", true)] [SerializeField] protected float _currentHealth;
 
     public int maxHealth = 100;
     public float currentHealth

@@ -71,8 +71,8 @@ public class MeleeCombatInput : PlayerInputs, IMeleeFighter
         if (!lockMeleeInput)
         {
             MeleeWeakAttackInput();
-            //MeleeStrongAttackInput();
-            //BlockingInput();
+            MeleeStrongAttackInput();
+            BlockingInput();
         }
         else
         {

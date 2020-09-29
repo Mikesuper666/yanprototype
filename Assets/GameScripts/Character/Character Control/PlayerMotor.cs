@@ -292,7 +292,8 @@ public abstract class PlayerMotor : Character
         }
 
         // health info
-
+        currentHealth = maxHealth;  //update heath
+        currentHealthRecoveryDelay = healthRecoveryDelay;
         currentStamina = maxStamina;
         ResetJumpMultiplier();
         isGrounded = true;
@@ -379,7 +380,7 @@ public abstract class PlayerMotor : Character
         // check how much stamina this action will consume
         if (isSprinting)
         {
-            currentStaminaRecoveryDelay = 0.25f;
+            currentStaminaRecoveryDelay = .25f;
             ReduceStamina(sprintStamina, true);
         }
     }
@@ -405,9 +406,8 @@ public abstract class PlayerMotor : Character
 
     public virtual void ControlLocomotion()
     {
-
         //if lock if die or cutscenes
-        if (lockMovement) return;
+        if (lockMovement || currentHealth <= 0) return;
 
         if (locomotionType.Equals(LocomotionType.FreeWithStrafe) && !isStrafing || locomotionType.Equals(LocomotionType.OnlyFree))
             FreeMovement();
@@ -415,6 +415,11 @@ public abstract class PlayerMotor : Character
             StrafeMovement();
     }
 
+
+    /// <summary>
+    /// Este metodo é chamado quando se entra em modo de conversa
+    /// </summary>
+    /// <param name="_isTalking"></param>
     public virtual void TalkCamera(bool _isTalking)
     {
         lockMovement = _isTalking;                  //lock player movement
@@ -430,7 +435,7 @@ public abstract class PlayerMotor : Character
         isStrafing = true;
 
         if (strafeSpeed.walkByDefault)
-            StrafeLimitSpeed(0.5f);
+            StrafeLimitSpeed(.5f);
         else
             StrafeLimitSpeed(1f);
         if (stopMove) strafeMagnitude = 0f;
@@ -464,7 +469,7 @@ public abstract class PlayerMotor : Character
         if (isSprinting) speed += .5f;
         if (stopMove || lockSpeed) speed = 0f;
 
-        anime.SetFloat("InputMagnitude", speed, .2f, Time.deltaTime); //************
+        anime.SetFloat("InputMagnitude", speed, .2f, Time.deltaTime); //************call walk/walking animations
 
         var conditions = (!actions || quickStop || isRolling && rollControl);
 
@@ -484,7 +489,7 @@ public abstract class PlayerMotor : Character
             }
             if (!keepDirection)
                 oldInput = input;
-            if (Vector2.Distance(oldInput, input) > 0.9f && keepDirection)
+            if (Vector2.Distance(oldInput, input) > .9f && keepDirection)
                 keepDirection = false;
         }
     }
@@ -561,29 +566,29 @@ public abstract class PlayerMotor : Character
             return;
         }
 
-        if (Physics.Linecast(transform.position + Vector3.up * (_capsuleCollider.height * 0.5f), transform.position + targetDirection.normalized * (_capsuleCollider.radius + 0.2f), out hitinfo, groundLayer))
+        if (Physics.Linecast(transform.position + Vector3.up * (_capsuleCollider.height * .5f), transform.position + targetDirection.normalized * (_capsuleCollider.radius + .2f), out hitinfo, groundLayer))
         {
             hitAngle = Vector3.Angle(Vector3.up, hitinfo.normal);
-            Debug.DrawLine(transform.position + Vector3.up * (_capsuleCollider.height * 0.5f), transform.position + targetDirection.normalized * (_capsuleCollider.radius + 0.2f), (hitAngle > slopeLimit) ? Color.yellow : Color.blue, 0.01f);
+            Debug.DrawLine(transform.position + Vector3.up * (_capsuleCollider.height * .5f), transform.position + targetDirection.normalized * (_capsuleCollider.radius + .2f), (hitAngle > slopeLimit) ? Color.yellow : Color.blue, .01f);
             var targetPoint = hitinfo.point + targetDirection.normalized * _capsuleCollider.radius;
-            if ((hitAngle > slopeLimit) && Physics.Linecast(transform.position + Vector3.up * (_capsuleCollider.height * 0.5f), targetPoint, out hitinfo, groundLayer))
+            if ((hitAngle > slopeLimit) && Physics.Linecast(transform.position + Vector3.up * (_capsuleCollider.height * .5f), targetPoint, out hitinfo, groundLayer))
             {
                 Debug.DrawRay(hitinfo.point, hitinfo.normal);
                 hitAngle = Vector3.Angle(Vector3.up, hitinfo.normal);
 
                 if (hitAngle > slopeLimit && hitAngle < 85f)
                 {
-                    Debug.DrawLine(transform.position + Vector3.up * (_capsuleCollider.height * 0.5f), hitinfo.point, Color.red, 0.01f);
+                    Debug.DrawLine(transform.position + Vector3.up * (_capsuleCollider.height * .5f), hitinfo.point, Color.red, .01f);
                     stopMove = true;
                     return;
                 }
                 else
                 {
-                    Debug.DrawLine(transform.position + Vector3.up * (_capsuleCollider.height * 0.5f), hitinfo.point, Color.green, 0.01f);
+                    Debug.DrawLine(transform.position + Vector3.up * (_capsuleCollider.height * .5f), hitinfo.point, Color.green, .01f);
                 }
             }
         }
-        else Debug.DrawLine(transform.position + Vector3.up * (_capsuleCollider.height * 0.5f), transform.position + targetDirection.normalized * (_capsuleCollider.radius * 0.2f), Color.blue, 0.01f);
+        else Debug.DrawLine(transform.position + Vector3.up * (_capsuleCollider.height * .5f), transform.position + targetDirection.normalized * (_capsuleCollider.radius * .2f), Color.blue, .01f);
 
         stopMove = false;
     }
@@ -827,8 +832,13 @@ public abstract class PlayerMotor : Character
         anime.SetFloat("VerticalVelocity", 0f);
         _rigidbody.useGravity = false;
         _capsuleCollider.isTrigger = true;
-    }/// Disables rigibody gravity, turn the capsule collider trigger and reset all input from the animator.
+    }// Disables rigibody gravity, turn the capsule collider trigger and reset all input from the animator.
 
+    /// <summary>
+    /// desativado no final de aninamação (subir escadas por exemplo)
+    /// Ativado quando se precisa gravidade e retornar ao controle 
+    /// </summary>
+    /// <param name="normalizedTime"></param>
     public void EnableGravityAndCollision(float normalizedTime)
     {
         //enable coolider and gravity at the end of the animation
@@ -895,7 +905,7 @@ public abstract class PlayerMotor : Character
         if (ragdollVel == 0) return;
 
         // check your verticalVelocity and assign a value on the variable RagdollVel at the Player Inspector
-        if (verticalVelocity <= ragdollVel && groundDistance <= 0.1f)
+        if (verticalVelocity <= ragdollVel && groundDistance <= .1f)
         {
             onActiveRagdoll.Invoke();
         }
@@ -972,9 +982,9 @@ public abstract class PlayerMotor : Character
         if (Application.isPlaying && debugWindow)
         {
             //// debug auto crouch
-            Vector3 posHead = transform.position + Vector3.up * ((colliderHeight * 0.5f) - colliderRadius);
+            Vector3 posHead = transform.position + Vector3.up * ((colliderHeight * .5f) - colliderRadius);
             Ray ray1 = new Ray(posHead, Vector3.up);
-            Gizmos.DrawWireSphere(ray1.GetPoint((headDetect - (colliderRadius * 0.1f))), colliderRadius * 0.9f);
+            Gizmos.DrawWireSphere(ray1.GetPoint((headDetect - (colliderRadius * 0.1f))), colliderRadius * .9f);
             //// debug stopmove            
             Ray ray3 = new Ray(transform.position + new Vector3(0, stopMoveHeight, 0), transform.forward);
             Debug.DrawRay(ray3.origin, ray3.direction * (_capsuleCollider.radius + stopMoveDistance), Color.blue);
@@ -983,7 +993,7 @@ public abstract class PlayerMotor : Character
             Debug.DrawRay(ray4.origin, ray4.direction * 1f, Color.cyan);
             //// debug stepOffset
             var dir = isStrafing && input.magnitude > 0 ? (transform.right * input.x + transform.forward * input.y).normalized : transform.forward;
-            Ray ray5 = new Ray((transform.position + new Vector3(0, stepOffsetEnd, 0) + dir * ((_capsuleCollider).radius + 0.05f)), Vector3.down);
+            Ray ray5 = new Ray((transform.position + new Vector3(0, stepOffsetEnd, 0) + dir * ((_capsuleCollider).radius + .05f)), Vector3.down);
             Debug.DrawRay(ray5.origin, ray5.direction * (stepOffsetEnd - stepOffsetStart), Color.yellow);
         }
     }

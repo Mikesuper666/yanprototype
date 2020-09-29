@@ -39,6 +39,10 @@ public class MeleeAttackObject : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Ativa todas hitboxes do Meleeattackobject
+    /// </summary>
+    /// <param name="value"></param>
     public virtual void SetActiveDamage(bool value)
     {
         canApplyDamage = value;
@@ -52,7 +56,7 @@ public class MeleeAttackObject : MonoBehaviour
         if (value)
             onEnableDamage.Invoke();
         else onDisableDamage.Invoke();
-    } /// Set Active all hitBoxes of the MeleeAttackObject
+    }// Set Active all hitBoxes of the MeleeAttackObject
 
     public virtual void OnHit(HitBox hitBox, Collider other)
     {

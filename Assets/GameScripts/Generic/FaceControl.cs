@@ -25,9 +25,9 @@ public class FaceControl : mMonoBehaviour
     [SerializeField]
     float m_closeSeconds = 0.1f;
 
-    [EditorToolbar("Eyes controll", order = 2)]
-    [SerializeField]
-    float testVariable = 0.1f;
+    //[EditorToolbar("Eyes controll", order = 2)]
+    //[SerializeField]
+    //float testVariable = 0.1f;
 
     protected Coroutine m_coroutine;
 

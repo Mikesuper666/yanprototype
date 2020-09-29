@@ -71,40 +71,6 @@ using YanProject;
         }
     }
 
-    void CheckHitBoxes(BodyMember bodyMember, bool isDefault = false)
-    {
-        if (AssetDatabase.Contains(manager.gameObject)) return;
-        var hitBoxes = bodyMember.transform.GetComponentsInChildren<HitBox>();
-        var _result = hitBoxes.vToList().FindAll(hitBox => hitBox.transform.parent == bodyMember.transform);
-        if (_result.Count > 0)
-        {
-            bodyMember.attackObject.hitBoxes = _result;
-        }
-        else
-        {
-            var hitBox = new GameObject("hitBox", typeof(HitBox), typeof(BoxCollider));
-            var scale = Vector3.one * 0.15f;
-            if (isDefault)
-            {
-                var lookDir = bodyMember.transform.GetChild(0).position - bodyMember.transform.position;
-                var rotation = Quaternion.LookRotation(lookDir);
-                scale.z = Vector3.Distance(bodyMember.transform.position, bodyMember.transform.GetChild(0).position);
-                var point = bodyMember.transform.position + (lookDir.normalized) * (scale.z * 0.7f);
-                hitBox.transform.position = point;
-                hitBox.transform.rotation = rotation;
-                hitBox.transform.localScale = scale;
-                hitBox.transform.parent = bodyMember.transform;
-            }
-            else
-            {
-                hitBox.transform.localScale = scale;
-                hitBox.transform.parent = bodyMember.transform;
-                hitBox.transform.localPosition = Vector3.zero;
-                hitBox.transform.localEulerAngles = Vector3.zero;
-            }
-        }
-    }
-
     void CheckSingleHitBox(Transform transform, HumanBones bodyPart, bool debug = false)
     {
         if (transform)
@@ -151,6 +117,40 @@ using YanProject;
             }
         }
         serializedObject.ApplyModifiedProperties();
+    }
+
+    void CheckHitBoxes(BodyMember bodyMember, bool isDefault = false)
+    {
+        if (AssetDatabase.Contains(manager.gameObject)) return;
+        var hitBoxes = bodyMember.transform.GetComponentsInChildren<HitBox>();
+        var _result = hitBoxes.vToList().FindAll(hitBox => hitBox.transform.parent == bodyMember.transform);
+        if (_result.Count > 0)
+        {
+            bodyMember.attackObject.hitBoxes = _result;
+        }
+        else
+        {
+            var hitBox = new GameObject("hitBox", typeof(HitBox), typeof(BoxCollider));
+            var scale = Vector3.one * .15f;
+            if (isDefault)
+            {
+                var lookDir = bodyMember.transform.GetChild(0).position - bodyMember.transform.position;
+                var rotation = Quaternion.LookRotation(lookDir);
+                scale.z = Vector3.Distance(bodyMember.transform.position, bodyMember.transform.GetChild(0).position);
+                var point = bodyMember.transform.position + (lookDir.normalized) * (scale.z * .7f);
+                hitBox.transform.position = point;
+                hitBox.transform.rotation = rotation;
+                hitBox.transform.localScale = scale;
+                hitBox.transform.parent = bodyMember.transform;
+            }
+            else
+            {
+                hitBox.transform.localScale = scale;
+                hitBox.transform.parent = bodyMember.transform;
+                hitBox.transform.localPosition = Vector3.zero;
+                hitBox.transform.localEulerAngles = Vector3.zero;
+            }
+        }
     }
 
     public override void OnInspectorGUI()
@@ -552,7 +552,7 @@ using YanProject;
                 {
                     hitBox.gameObject.tag = "Ignore Ragdoll";
                     hitBox.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-                }
+                }//add layer e tag for each hitbox
             }
         }
     }

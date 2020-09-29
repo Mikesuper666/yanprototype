@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System;
+using System.Collections.Generic;
 
 public class HUDController : MonoBehaviour
 {
@@ -59,19 +60,32 @@ public class HUDController : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
+        InitFadeText();
         if (debugPanel != null)
             debugText = debugPanel.GetComponentInChildren<Text>();
     }
 
     public void Init(PlayerController cc)
     {
+        cc.onDead.AddListener(OnDead);
+        cc.onReceiveDamage.AddListener(EnableDamageSprite);
+        damageImage.color = new Color(0f, 0f, 0f, 0f);
+    }
+
+    private void OnDead(GameObject arg0)
+    {
+        ShowText("You are Dead!");
     }
 
     public virtual void UpdateHUD(PlayerController cc)
     {
         UpdateDebugWindow(cc);
+        UpdateSliders(cc);
+        ChangeInputDisplay();
+        ShowDamageSprite();
+        FadeEffect();
     }
 
     public void ShowText(string message, float textTime = 2f, float fadeTime = 0.5f)
@@ -116,9 +130,44 @@ public class HUDController : MonoBehaviour
         }
     }
 
+    void UpdateSliders(PlayerController cc)
+    {
+        if (cc.maxHealth != healthSlider.maxValue)
+        {
+            healthSlider.maxValue = Mathf.Lerp(healthSlider.maxValue, cc.maxHealth, 2f * Time.fixedDeltaTime);
+            healthSlider.onValueChanged.Invoke(healthSlider.value);
+        }
+        healthSlider.value = Mathf.Lerp(healthSlider.value, cc.currentHealth, 2f * Time.fixedDeltaTime);
+        if (cc.maxStamina != staminaSlider.maxValue)
+        {
+            staminaSlider.maxValue = Mathf.Lerp(staminaSlider.maxValue, cc.maxStamina, 2f * Time.fixedDeltaTime);
+            staminaSlider.onValueChanged.Invoke(staminaSlider.value);
+        }
+        staminaSlider.value = cc.currentStamina;
+    }
+
+    public void ShowDamageSprite()
+    {
+        if (damaged)
+        {
+            damaged = false;
+            if (damageImage != null)
+                damageImage.color = flashColour;
+        }
+        else if (damageImage != null)
+            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+    }
+
+    public void EnableDamageSprite(Damage damage)
+    {
+        if (damageImage != null)
+            damageImage.enabled = true;
+        damaged = true;
+    }
+
     void UpdateDebugWindow(PlayerController cc)
     {
-        if(cc.debugWindow)
+        if (cc.debugWindow)
         {
             if (debugPanel != null && !debugPanel.activeSelf)
                 debugPanel.SetActive(true);
@@ -131,4 +180,62 @@ public class HUDController : MonoBehaviour
                 debugPanel.SetActive(false);
         }
     }
+
+    void ChangeInputDisplay()
+    {
+#if MOBILE_INPUT
+		displayControls.enabled = false;
+#else
+        if (controllerInput)
+            displayControls.sprite = joystickControls;
+        else
+            displayControls.sprite = keyboardControls;
+#endif
+    }
+
+    void InitFadeText()
+    {
+        if (fadeText != null)
+        {
+            fadeText.verticalOverflow = VerticalWrapMode.Overflow;
+            startColor = fadeText.color;
+            endColor.a = 0f;
+            fadeText.color = endColor;
+        }
+        else
+            Debug.Log("Please assign a Text object on the field Fade Text");
+    }
+
+    void FadeEffect()
+    {
+        if (fadeText != null)
+        {
+            if (fade)
+            {
+                fadeText.color = Color.Lerp(endColor, startColor, timer);
+
+                if (timer < 1)
+                    timer += Time.deltaTime / fadeDuration;
+
+                if (fadeText.color.a >= 1)
+                {
+                    fade = false;
+                    timer = 0f;
+                }
+            }
+            else
+            {
+                if (fadeText.color.a >= 1)
+                    durationTimer += Time.deltaTime;
+
+                if (durationTimer >= textDuration)
+                {
+                    fadeText.color = Color.Lerp(startColor, endColor, timer);
+                    if (timer < 1)
+                        timer += Time.deltaTime / fadeDuration;
+                }
+            }
+        }
+    }
+
 }
